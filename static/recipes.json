@@ -1,7 +1,40 @@
 {
   "recipes": [
     {
-      "id": "624c100e-da83-4515-9564-b266d1f59a04",
+      "id": "7a6fd860-c3dd-4870-a187-8ecee4e8b74e",
+      "title": "Bear Paw Cookies",
+      "ingredients": [
+        "1 cup unsalted butter softened",
+        "1 cup sugar",
+        "1 egg",
+        "1 tsp vanilla extract",
+        "2 cups flour",
+        "1 tsp baking powder",
+        "1/2 tsp baking soda",
+        "1/4 tsp salt",
+        "1 bag of ghiradelli dark chocolate melting wafers only need 24 wafer chips",
+        "1 bag of semi sweet chocolate chips only 3 chips go onto each cookie for the claws"
+      ],
+      "instructions": [
+        "Preheat oven to 350 degrees",
+        "Line cookie sheet with a cookie mat (or parchment paper) and set aside",
+        "Using a stand mixer, cream together the butter and sugar.",
+        "Add in the egg, vanilla and beat to combine.",
+        "Add in the baking soda, baking powder, salt and flour and beat until a soft dough forms.",
+        "Measure out into .5 ounce balls of dough and roll into balls. Roll in extra granulated sugar!",
+        "Place dough onto cookie sheet 2 inches apart and bake 9-12 minutes.",
+        "Once cookies are baked, place a melting wafer into the center of the cookie for the pad of the paw",
+        "Then place 3 chocolate chips above the paw for the claws.",
+        "Repeat steps with remaining dough and cookies.",
+        "Let cookies cool for about 30 minutes before enjoying!"
+      ],
+      "tags": [
+        "Cookies"
+      ],
+      "url": "https://kitchenfunwithmy3sons.com/bear-paw-cookies/"
+    },
+    {
+      "id": "7f394ada-a1c2-4707-a4d6-0af2831ec3e5",
       "title": "3-Ingredient Stovetop Mac and Cheese Recipe",
       "ingredients": [
         "6 ounces (170 g) elbow macaroni",
@@ -10,7 +43,8 @@
         "6 ounces (170 g) grated mild or medium cheddar cheese, or any good melting cheese, such as Fontina, Gruy\u00e8re, or Jack"
       ],
       "instructions": [
-        "Place macaroni in a medium saucepan or skillet and add just enough cold water to cover.Add a pinch of salt and bring to a boil over high heat, stirring frequently.",
+        "Place macaroni in a medium saucepan or skillet and add just enough cold water to cover.",
+        "Add a pinch of salt and bring to a boil over high heat, stirring frequently.",
         "Continue to cook, stirring, until water has been almost completely absorbed and macaroni is just shy of al dente, about 6 minutes.",
         "Immediately add evaporated milk and bring to a boil.",
         "Add cheese.",
@@ -19,9 +53,127 @@
       ],
       "tags": [
         "Kenji",
-        "Cheese"
+        "cheese"
       ],
-      "url": null
+      "url": "https://kitchenfunwithmy3sons.com/bear-paw-cookies/"
+    },
+    {
+      "id": "6d994b37-8c43-44e4-8d88-3f1c80d44b62",
+      "title": "Feta Za\u2019atar Biscuits",
+      "ingredients": [
+        "DAIRY",
+        "2 sticks unsalted butter, divided (Molly used Kerrygold unsalted!)",
+        "6 ounces feta cheese (block, not crumbled)",
+        "1 cup buttermilk",
+        "PANTRY",
+        "2 \u00bd cups all-purpose flour",
+        "1 tablespoon baking powder",
+        "2 \u00bd tablespoons za\u2019atar spice blend, divided",
+        "1 tsp kosher salt",
+        "1 tsp sugar",
+        "Flaky sea salt"
+      ],
+      "instructions": [
+        "1. Do some prep:",
+        "Preheat the oven to 425. Line a baking sheet with parchment paper.",
+        "Throw 1\u00bd sticks (12 tablespoons) of unsalted butter onto a small plate and store in the fridge for at least 10 minutes (and up to an hour) to ensure it is very very cold.",
+        "Thinly slice a 6-ounce chunk of feta (if it\u2019s packed in brine, you\u2019ll want to pat it dry first using paper towels) into \u201d thick planks. Doesn\u2019t matter if they break\u2013they are going to get scattered over the dough after it\u2019s rolled out.",
+        "2. Make the dough",
+        "In a large bowl, whisk together 2 \u00bd cups all purpose flour, 1 tablespoon baking powder, 1\u00bd tablespoons za\u2019atar spice blend, 1 teaspoon salt and 1 teaspoon sugar.",
+        "Once the butter is very cold and hard, set a box grater over the bowl of flour, and grate the 12 tablespoons of butter on the large holes, right into the flour. Use your hands to lighly toss and fluff the flour to coat the butter.",
+        "Using a wooden spoon, make a well it the middle of the flour mixture. Pour 1 cup buttermilk into the well. Stir with the wooden spoon, starting in the center, until the dough sticks together in large clumps. There will still likely be a fair amount of unincorporated flour\u2013don\u2019t worry\u2013we\u2019ll get there.",
+        "Once the clumps have started to form, dump the contents of the bowl out onto a clean work surface. Using your hands, pat and knead the dough a bit until it comes together in a singular mass, and the loose floury bits start to become incorporated \u2013 it may seem like there\u2019s a lot of excess flour but it will eventually become one! Once it\u2019s mostly all incorporated, use a rolling pin or a wine bottle to roll the dough into a large 1 1/2\u201d thick rectangle.",
+        "Scatter about a third of the feta planks over one half rectangle. Fold the rectangle in half to enclose the feta. Reroll the dough again into a 1 1/2\u201d rectangle (you may want to add some flour to your surface throughout this process to avoid sticking). Add another third of the feta, fold the dough in half, and roll again. Repeat one last time (now all of the feta should be rolled into the dough.",
+        "From here, shape the dough into a 6\u201d x 9\u201d rectangle. Do your best to square off the edges but don\u2019t worry too much! Using a sharp, floured knife, cut the dough into 6 equal squares. Transfer the biscuits to the prepared baking sheet. Keep chilled while you finish the last step.",
+        "3. Sizzle the za\u2019atar in butter and bake:",
+        "In a small saucepan, melt the remaining 4 tablespoons of butter, along with another heaping tablespoon of za\u2019atar spice blend. Once the foaming subsides and the butter smells fragrant, remove from the heat, 1-2 minutes.",
+        "Remove the biscuits from the fridge. Lightly brush the tops of each one with some melted za\u2019atar butter.",
+        "Bake, rotating once halfway through, until golden brown at all the edges, 20-25 minutes.",
+        "Just before serving, brush with more of the za\u2019atar butter (reheat it gently if you need to), and sprinkle with flaky sea salt. Serve warm (I promise they are soooo much better warm, it\u2019s worth it. If you have to reheat them, do it!). Store in an airtight container, and reheat at 375, for about 5 minutes."
+      ],
+      "tags": [
+        "Molly",
+        "Biscuits"
+      ],
+      "url": "https://kitchenfunwithmy3sons.com/bear-paw-cookies/"
+    },
+    {
+      "id": "9ed5d643-5e87-4d3f-a400-2bbfff7efae9",
+      "title": "Apple Cider Bundt Cake",
+      "ingredients": [
+        "Cake",
+        "2 cups plus 2 tablespoons (266 g) all-purpose flour, spooned and leveled",
+        "1 teaspoon baking powder",
+        "1/2 teaspoon baking soda",
+        "3/4 teaspoon salt",
+        "1 teaspoon ground cinnamon",
+        "1/2 teaspoon ground ginger",
+        "1/4 teaspoon ground nutmeg",
+        "1/8 teaspoon ground cloves",
+        "3/4 cups (170 g) unsalted butter, room temperature",
+        "3/4 cup (150 g) dark brown sugar, packed",
+        "1/2 cup (100 g) granulated sugar",
+        "3 eggs, room temperature",
+        "1 teaspoon vanilla",
+        "1/3 cup full fat sour cream, room temperature",
+        "3/4 cup apple cider (not apple juice)",
+        "Topping",
+        "3 tablespoons unsalted butter, melted",
+        "1/4 cup granulated sugar",
+        "1 1/2 teaspoons ground cinnamon",
+        "pinch of nutmeg",
+        "Glaze",
+        "1 1/2 cups confectioners sugar, sifted",
+        "4\u20136 tablespoons apple cider (or milk)"
+      ],
+      "instructions": [
+        "Preheat oven to 350\u00b0 F.",
+        "Whisk together flour, baking powder, baking soda, salt and spices in a medium bowl. Set aside.",
+        "In the bowl of a stand mixer, or using a hand held mixer, beat the butter and sugars together on medium until light and fluffy. Scrape down the sides of the bowl.",
+        "Reduce the mixer to low and add the eggs one at a time. Scrape down the sides of the bowl between each addition.",
+        "Add the vanilla and sour cream. Mix well.",
+        "Mix in the flour mixture, alternating with the apple cider. Begin and end with the flour. Mix until just incorporated.",
+        "Spray a 12-cup bundt pan with non-stick baking spray.",
+        "Transfer the batter to the bundt pan, smoothing the top with a spatula.",
+        "Place the bundt pan on a large baking sheet and bake for 45-50 minutes. The cake is done when a toothpick inserted in the top of the cake comes out clean or with a few crumbs remaining. Do not over bake.",
+        "Remove the cake from the oven and cool in the pan on a wire rack for 10 minutes. After 10 minutes, invert the cake onto a plate or platter. Cool the cake completely before adding the cinnamon sugar topping.",
+        "To coat the cake, use a pastry brush to coat the entire cake with the melted butter. Mix together the sugar, cinnamon and nutmeg in a small bowl.",
+        "Immediately sprinkle the cake generously with the cinnamon sugar mixture, using your hands to press it gently into the top and sides of the cake. Use all of the cinnamon sugar topping.",
+        "To make the glaze, stir together the confectioners sugar and apple cider (or milk). Whisk until smooth but pourable. If the glaze is too thick, add more cider or milk. If too thin, add more sugar. Drizzle over the cinnamon sugar topping."
+      ],
+      "tags": [
+        "Cake"
+      ],
+      "url": "https://kitchenfunwithmy3sons.com/bear-paw-cookies/"
+    },
+    {
+      "id": "0121faf6-1c82-4922-9c8e-9cc64041595f",
+      "title": "After-School Banana Bread",
+      "ingredients": [
+        "Nonstick baking spray, for the pan",
+        "8 tablespoons (1 stick) salted butter, melted and cooled, plus softened butter for serving",
+        "1 cup packed light brown sugar",
+        "2 large eggs, beaten",
+        "1 1/2 teaspoons pure vanilla extract",
+        "4 to 5 very ripe bananas, mashed (I like to leave them a little chunky)",
+        "1 3/4 cups all-purpose flour",
+        "1 teaspoon baking soda",
+        "1/2 teaspoon kosher salt",
+        "1/2 cup chopped pecans (optional; see Cook\u2019s Note)",
+        "1 to 2 tablespoons granulated sugar as needed"
+      ],
+      "instructions": [
+        "Preheat the oven to 350\u00b0F. Spray an 8 x 8-inch pan with nonstick baking spray or line it with parchment paper.",
+        "In a stand mixer fitted with the paddle attachment (or in a large bowl with a handheld electric mixer), beat together the butter, brown sugar, eggs, and vanilla until well blended. Add the bananas and mix until combined.",
+        "In a medium bowl, whisk together the flour, baking soda, and salt. Add the dry ingredients to the wet ingredients and beat just until combined. Add the pecans (if using) and mix until combined.",
+        "Pour the batter into the prepared pan and spread it evenly. Sprinkle the granulated sugar over the top. I like to cover the whole surface completely with sugar; use as much as you\u2019d like.",
+        "Bake until a tester inserted in the center comes out clean, 45 to 50 minutes. Let the bread cool slightly in the pan on a rack. Slice and serve warm with butter.",
+        "When completely cooled, cover the pan with foil and store at room temperature for up to 2 days."
+      ],
+      "tags": [
+        "Banana"
+      ],
+      "url": "https://kitchenfunwithmy3sons.com/bear-paw-cookies/"
     }
   ]
 }
