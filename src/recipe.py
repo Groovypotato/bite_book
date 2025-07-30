@@ -11,18 +11,19 @@ class Recipe:
     
     def __str__(self):
         return f"{self.title}\n{self.description}\n{self.ingredients}\n{self.instructions}\n{self.recipe_tags}"
-    
-    
-    def set_ingredients(self,ingredient_list):
-        ingredients = []
-        for ingredient in ingredient_list:
-            ingredients.append(ingredient)
-        self.ingredients = ingredients
+
+
+    def set_ingredients(self,text):
+        ingredient_list = []
+        ingredient_lines = text.splitlines()
+        for ingredient in ingredient_lines:
+            ingredient_list.append(ingredient)
+        self.ingredients = ingredient_list
     
     def set_instructions(self,instruction_list):
             instructions = []
             for instruction in instruction_list:
-                instructions.append(instruction)
+                instructions.append(instruction + "\n")
             self.instructions = instructions
 
     def set_recipe_tags(self,recipe_tag_list):
