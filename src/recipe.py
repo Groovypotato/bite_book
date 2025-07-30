@@ -15,7 +15,7 @@ class Recipe:
     
     def __str__(self):
         return f"{self.title}\n{self.description}\n{self.ingredients}\n{self.instructions}\n{self.recipe_tags}"
-    
+
 
     def print_recipe_card(self):
         title_card = self.title
@@ -78,3 +78,4 @@ class Recipe:
         "tags": self.recipe_tags,
         "url": self.url
         }
+    
