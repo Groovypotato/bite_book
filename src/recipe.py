@@ -18,4 +18,9 @@ class Recipe:
         for ingredient in ingredient_list:
             ingredients.append(ingredient)
         self.ingredients = ingredients
-
+    
+    def set_instructions(self,instruction_list):
+            instructions = []
+            for instruction in instruction_list:
+                instructions.append(instruction)
+            self.instructions = instructions
