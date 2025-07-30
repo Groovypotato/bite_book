@@ -20,11 +20,12 @@ class Recipe:
             ingredient_list.append(ingredient)
         self.ingredients = ingredient_list
     
-    def set_instructions(self,instruction_list):
-            instructions = []
-            for instruction in instruction_list:
-                instructions.append(instruction + "\n")
-            self.instructions = instructions
+    def set_instructions(self,text):
+            instructions_list = []
+            split_instructions = text.splitlines()
+            for instruction in split_instructions:
+                instructions_list.append(instruction)
+            self.instructions = instructions_list
 
     def set_recipe_tags(self,recipe_tag_list):
             recipie_tags = []
