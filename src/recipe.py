@@ -27,8 +27,9 @@ class Recipe:
                 instructions_list.append(instruction)
             self.instructions = instructions_list
 
-    def set_recipe_tags(self,recipe_tag_list):
-            recipie_tags = []
-            for tag in recipe_tag_list:
-                recipie_tags.append(tag)
-            self.recipe_tags = recipie_tags
+    def set_recipe_tags(self,text):
+            recipie_tags_list = []
+            split_tags = text.splitlines()
+            for tag in split_tags:
+                recipie_tags_list.append(tag)
+            self.recipe_tags = recipie_tags_list
