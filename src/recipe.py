@@ -11,10 +11,10 @@ class Recipe:
         self.max_length = 0
 
     def __repr__(self):
-        return f"Recipe({self.title},{self.description},{self.ingredients},{self.instructions},{self.recipe_tags})"
+        return f"Recipe({self.title},{self.ingredients},{self.instructions},{self.recipe_tags})"
     
     def __str__(self):
-        return f"{self.title}\n{self.description}\n{self.ingredients}\n{self.instructions}\n{self.recipe_tags}"
+        return f"{self.title}\n{self.ingredients}\n{self.instructions}\n{self.recipe_tags}"
 
 
     def print_recipe_card(self):
@@ -42,30 +42,27 @@ class Recipe:
         print("| " + tags.ljust(self.max_length - 4) + " |")
         print(top_bottom)
 
-    def set_ingredients(self,text):
-        ingredient_list = []
-        ingredient_lines = text.splitlines()
-        for ingredient in ingredient_lines:
-            ingredient_list.append(ingredient.strip())
+    def set_ingredients(self,ingredient_list):
+        new_ingredient_list = []
+        for ingredient in ingredient_list:
+            new_ingredient_list.append(ingredient.strip())
             if len(ingredient) > self.max_length:
                  self.max_length = len(ingredient)
         self.ingredients = ingredient_list
         
     
-    def set_instructions(self,text):
-            instructions_list = []
-            split_instructions = text.splitlines()
-            for instruction in split_instructions:
-                instructions_list.append(instruction.strip())
+    def set_instructions(self,instructions_list):
+            new_instructions_list = []
+            for instruction in instructions_list:
+                new_instructions_list.append(instruction.strip())
                 if len(instruction) > self.max_length:
                  self.max_length = len(instruction)
-            self.instructions = instructions_list
+            self.instructions = new_instructions_list
 
-    def set_recipe_tags(self,text):
-            recipie_tags_list = []
-            split_tags = text.splitlines()
-            for tag in split_tags:
-                recipie_tags_list.append(tag.strip())
+    def set_recipe_tags(self,recipie_tags_list):
+            new_recipie_tags_list = []
+            for tag in recipie_tags_list:
+                new_recipie_tags_list.append(tag.strip())
             self.recipe_tags = recipie_tags_list
 
 

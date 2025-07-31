@@ -1,5 +1,4 @@
 import json
-from main import create_recipe
 
 def save_recipes_to_json(data,file_path):
     try:
@@ -23,7 +22,5 @@ def add_recipe_to_book(recipe_obj,file_path):
     book["recipes"].append(recipe_obj.recipe_to_dictionary())
     save_recipes_to_json(book,file_path)
 
-def dictionary_to_recipe(dictionary):
-    recipe = create_recipe(dictionary["title"],dictionary["ingredients"],dictionary["instructions"],dictionary["tags"],dictionary["url"])
-    return recipe
+
 
