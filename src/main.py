@@ -90,6 +90,12 @@ def run_search(file_path: str):
        print("Incorrect Choice!")
   else:
     print(f"0 recipes were found that match '{user_search_search_term}'")
+    user_search_again = input("Would you like to make another search?   'Yes' or 'No'    ")
+    if user_search_again.lower() == "yes":
+        print("Starting New Search")
+        run_search(file_path)
+    elif user_search_again.lower() == "no":
+      print("Exiting to main menu...")
 
 def main():
   while True:
