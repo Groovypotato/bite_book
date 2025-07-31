@@ -31,12 +31,33 @@ def main():
   user_search_search_term = input("Enter Search Term:    ")
   results = search_recipes(load_recipes_from_json(file_path),search_type,user_search_search_term)
   if len(results) > 1:
-     print(f"There were {len(results)} results!:")
-     list_of_recipies = dictoinaries_to_recipes(results)
-     i = 1
-     for recipie in list_of_recipies:
-        print(f"{i}. {recipie.title}")
-        i = i + 1
+    print(f"There were {len(results)} results!:")
+    list_of_recipies = dictoinaries_to_recipes(results)
+    i = 1
+    for recipie in list_of_recipies:
+      print(f"{i}. {recipie.title}")
+      i = i + 1
+    user_multi_recipe_choice = input(f"Which number would you like to select 1 - {len(list_of_recipies)} or {len(list_of_recipies) + 1} to cancel the search.     ")
+    if int(user_multi_recipe_choice) <= len(list_of_recipies):
+      print("- " + list_of_recipies[int(user_multi_recipe_choice)-1].title)
+      user_print_card = input(f"Would you like to see the recipe card for {list_of_recipies[int(user_multi_recipe_choice)-1].title}? 'Yes' or 'No'    ")
+      if user_print_card.lower() == "yes":
+        list_of_recipies[int(user_multi_recipe_choice)-1].print_recipe_card()
+        user_search_again = input("Would you like to make another search?   'Yes' or 'No'    ")
+        if user_search_again.lower() == "yes":
+          print("Starting New Search")
+        elif user_search_again.lower() == "no":
+          print("Goodbye!")
+          exit()
+      elif user_print_card.lower() == "no":
+        user_search_again = input("Would you like to make another search?   'Yes' or 'No'    ")
+        if user_search_again.lower() == "yes":
+          print("Starting New Search")
+        elif user_search_again.lower() == "no":
+          print("Goodbye!")
+          exit()
+      else:
+        print("Incorrect Choice!")
   elif len(results) == 1:
     i =1
     print(f"There was {i} Result:")
