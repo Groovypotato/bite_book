@@ -1,6 +1,6 @@
 from recipe import Recipe
 from search_manager import SearchType,search_recipes
-from data_manager import load_recipes_from_json
+from data_manager import load_recipes_from_json,add_recipe_to_book
 file_path = "./static/recipes.json"
 
 def create_recipe(title,ingredients,instructions,tags,url=None):
@@ -97,6 +97,81 @@ def run_search(file_path: str):
     elif user_search_again.lower() == "no":
       print("Exiting to main menu...")
 
+def run_add_recipes(file_path):
+  user_recipe_title_confirm = "no"
+  while user_recipe_title_confirm == "no".lower():
+    user_recipe_title = input("\nPlease enter the 'Title' of the recipe:    ")
+    print(f"\n{user_recipe_title}")
+    user_recipe_title_confirm = input("\nDoes the title above look correct? 'Yes' or 'No':    ")
+    if user_recipe_title_confirm.lower() == "no".lower():
+      print("\nRetype your title.")
+  if user_recipe_title_confirm.lower() == "yes".lower():
+    print("\nLet's add some ingredients")
+  else:
+    print("\nInvalid Response")
+    return
+  user_recipe_ingredients_confirm = "no"
+  while user_recipe_ingredients_confirm == "no":
+    user_recipe_ingredients = input("\nEnter your ingredients on one line seperated by /n:    ").split('/n')
+    print(f"\n{user_recipe_ingredients}")
+    user_recipe_ingredients_confirm = input("\nDo these ingredients look correct?  'Yes' or 'No':    ")
+    if user_recipe_ingredients_confirm.lower() == "no":
+      print("\nRetype your ingredients")
+  if user_recipe_ingredients_confirm.lower() == "yes":
+    print("\nLets add some instructions")
+  else:
+    print("\nInvalid Response")
+    return
+  user_recipe_instructions_confirm = "no"
+  while user_recipe_instructions_confirm == "no":
+    user_recipe_instructions = input("\nEnter your instructions on one line seperated by /n:    ").split('/n')
+    print(f"\n{user_recipe_instructions}")
+    user_recipe_instructions_confirm = input("\nDo these instructions look correct?  'Yes' or 'No':    ")
+    if user_recipe_instructions_confirm.lower() == "no":
+      print("\nRetype your instructions")
+  if user_recipe_instructions_confirm.lower() == "yes":
+    print("\nLets add some tags")
+  else:
+    print("\nInvalid Response")
+    return
+  user_recipe_tags_confirm = "no"
+  while user_recipe_tags_confirm == "no":
+    user_recipe_tags = input("\nEnter your tags on one line seperated by /n:    ").split('/n')
+    print(user_recipe_tags)
+    user_recipe_tags_confirm = input("\nDo these tag(s) look correct?  'Yes' or 'No':    ")
+    if user_recipe_tags_confirm.lower() == "no":
+      print("\nRetype your Tag(s)")
+  if user_recipe_tags_confirm.lower() == "yes":
+    print("\nLets add a URL")
+  else:
+    print("\nInvalid Response")
+    return
+  user_recipe_url_confirm = "no"
+  while user_recipe_url_confirm == "no":
+    user_recipe_url = input("\nEnter your URL or 'None' is there isn't one:    ")
+    print(f"\n{user_recipe_url}")
+    user_recipe_url_confirm = input("\nDo the URL look correct?  'Yes' or 'No':    ")
+    if user_recipe_url_confirm.lower() == "no":
+      print("\nRetype your URL")
+  if user_recipe_url_confirm.lower() == "yes":
+    print(f"Creating Recipe {user_recipe_title}")
+    new_recipe = create_recipe(user_recipe_title,user_recipe_ingredients,user_recipe_instructions,user_recipe_tags,user_recipe_url)
+  else:
+    print("Invalid Response")
+    return
+  add_recipe_to_book(new_recipe,file_path)
+  print(f"\nRecipe:'{user_recipe_title}' added")
+  user_add_another_confirm = input("\nWould you like to add another recipe?  'Yes' or 'No'    ")
+  if user_add_another_confirm.lower() == "yes":
+    run_add_recipes(file_path)
+  elif user_add_another_confirm.lower() == "no":
+    print("Exiting to Menu")
+  else:
+    print("Invalid Response")
+
+
+
+
 def main():
   while True:
     print("\nWelome to BiteBook, All your best recipes, byte-sized! ")
@@ -107,7 +182,7 @@ def main():
     if int(user_feautre_choice) == 1:
       run_search(file_path)
     elif int(user_feautre_choice) == 2:
-      print("'Add recipe' feature coming soon!")
+      run_add_recipes(file_path)
     elif int(user_feautre_choice) == 3:
       print("Goodbye")
       exit()
