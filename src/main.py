@@ -169,21 +169,25 @@ def run_add_recipes(file_path):
   else:
     print("Invalid Response")
 
-
+def run_edit_recipes(file_path):
+  
 
 
 def main():
   while True:
     print("\nWelome to BiteBook, All your best recipes, byte-sized! ")
-    print("1. Search for recipe")
-    print("2. Add a new recipe")
-    print("3. Exit program")
+    print("1. Search for recipe(s)")
+    print("2. Add a new recipe(s)")
+    print("3. Edit recipe(s)")
+    print("4. Exit program")
     user_feautre_choice = input("Choose an option:    ")
     if int(user_feautre_choice) == 1:
       run_search(file_path)
     elif int(user_feautre_choice) == 2:
       run_add_recipes(file_path)
     elif int(user_feautre_choice) == 3:
+      run_edit_recipes(file_path)
+    elif int(user_feautre_choice) == 4:
       print("Goodbye")
       exit()
     
