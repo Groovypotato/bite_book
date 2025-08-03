@@ -1,8 +1,9 @@
 import uuid
 
 class Recipe:
-    def __init__(self,title,ingredients= None, instructions = None, recipe_tags = None, url = None):
-        self.id = str(uuid.uuid4()) 
+    def __init__(self,title,ingredients= None, instructions = None, recipe_tags = None, url = None, id = None):
+        if id == None:
+            self.id = str(uuid.uuid4()) 
         self.title = title
         self.ingredients = ingredients
         self.instructions = instructions

@@ -3,7 +3,7 @@ from search_manager import SearchType,search_recipes
 from data_manager import load_recipes_from_json,add_recipe_to_book
 file_path = "./static/recipes.json"
 
-def create_recipe(title,ingredients,instructions,tags,url=None):
+def create_recipe(title,ingredients,instructions,tags,url=None, id=None):
    new_recipe = Recipe(title=title,url=url)
    new_recipe.set_ingredients(ingredients)
    new_recipe.set_instructions(instructions)
@@ -27,7 +27,6 @@ def run_search(file_path: str):
      search_type = SearchType[user_search_type_question.upper()]
   except KeyError:
      print("Invalid search type.")
-  print(search_type)
   user_search_search_term = input("Enter Search Term:    ")
   results = search_recipes(load_recipes_from_json(file_path),search_type,user_search_search_term)
   if len(results) > 1:
@@ -169,8 +168,52 @@ def run_add_recipes(file_path):
   else:
     print("Invalid Response")
 
-def run_edit_recipes(file_path):
-  
+def run_edit_recipes(file_path:str):
+  print("Let's find the recipe to edit.\n")
+  user_search_type_question = input("What Type of Search do you want?: Title, Ingredient, Tag, or ID:    \n")
+  try:
+     search_type = SearchType[user_search_type_question.upper()]
+  except KeyError:
+     print("Invalid search type.")
+  user_search_search_term = input("\nEnter Search Term:    \n")
+  results = search_recipes(load_recipes_from_json(file_path),search_type,user_search_search_term)
+  if len(results) > 1:
+    print(f"There were {len(results)} results!:")
+    list_of_recipies = dictoinaries_to_recipes(results)
+    i = 1
+    for recipie in list_of_recipies:
+      print(f"{i}. {recipie.title}")
+      i = i + 1
+    user_multi_recipe_choice = input(f"Which number would you like to select 1 - {len(list_of_recipies)} or {len(list_of_recipies) + 1} to cancel the search.     ")
+    if int(user_multi_recipe_choice) <= len(list_of_recipies):
+      print("- " + list_of_recipies[int(user_multi_recipe_choice)-1].title)
+      
+    elif int(user_multi_recipe_choice) == len(list_of_recipies)+1:
+      pass
+    else:
+      print("Invalid Response!")
+  elif len(results) == 1:
+    i =1
+    print(f"\nThere was {i} Result:\n")
+    found_recipe = results[0]
+    stripped_recipe = found_recipe
+    print(f"- {found_recipe["title"]}\n")
+    user_edit_recipe_confirm = input("Is this the recipe that you want to edit.   'Yes' or 'No'    \n")
+    if user_edit_recipe_confirm.lower() == "yes":
+      print("What field do you want to edit?")
+      recipe_to_edit = create_recipe(found_recipe["title"],found_recipe["ingredients"],found_recipe["instructions"],found_recipe["tags"],found_recipe["url"])
+      for name,value in recipe_to_edit.__dict__.items():
+        print(name)
+      test_test = input("More code here")
+
+  else:
+    print(f"0 recipes were found that match '{user_search_search_term}'")
+    user_search_again = input("Would you like to make another search?   'Yes' or 'No'    ")
+    if user_search_again.lower() == "yes":
+        print("Starting New Search")
+        run_edit_recipes(file_path)
+    elif user_search_again.lower() == "no":
+      print("Exiting to main menu...")
 
 
 def main():
