@@ -249,8 +249,48 @@ def run_edit_recipes(file_path:str):
           print("Invalid Option\n")
           print("Returning you to the Menu")
       elif user_item_to_edit.lower() == "ingredients":
-        #update with updating ingredients
-        pass
+         print(f"\nHow would you like to edit the ingredients of {recipe_to_edit.title}\n")
+         print("1. Add an ingredient")
+         print("2. Remove an ingredient.")
+         print("3. Edit one of the ingredents in the recipe")
+         print("4. Replace all ingredients with new ones.\n")
+         user_ingredient_edit_type = input("Which would you like to do?\n")
+         if user_ingredient_edit_type == 1:
+          #update with adding an ingredient to an existing recipe
+          new_ingredient_while = 1
+          while new_ingredient_while == 1:
+            user_new_ingredient = input("Enter your new ingredient.\n")
+            user_new_ingredient_confirm = input(f"Is '{user_new_ingredient}' correct?   'Yes' or 'No'\n")
+            if user_new_ingredient_confirm.lower() == "no":
+              print("Ok, let's try this again.")
+            elif user_new_ingredient_confirm.lower() == "yes":
+              new_ingredient_while = 0
+            else:
+              print("Invalid Response")
+          print("Here is the list of the current ingredients:\n")
+          ingredient_idx = 1
+          ingredient_replacement_while = 1
+          while ingredient_replacement_while == 1:
+            for ingredient in recipe_to_edit.ingredients:
+              print(f"{ingredient_idx}. {ingredient}\n")
+            user_ingredient_add_placement = input(f"\nWhich ingredient do you want to move down in the list and replace with the new one?    1-{len(recipe_to_edit.ingredients)} or {len(recipe_to_edit.ingredients)+1} to place it at the end.\n")
+            if user_ingredient_add_placement >= len(recipe_to_edit.ingredients):
+              pass
+            elif user_ingredient_add_placement == len(recipe_to_edit.ingredients) + 1:
+              pass
+            else:
+              print("Invalid Response")
+          
+         if user_ingredient_edit_type == 2:
+           #update with removing an ingredient in an existing recipe
+           pass
+         if user_ingredient_edit_type == 3:
+           #update with editing an ingredient in an existing recipe
+           pass
+         if user_ingredient_edit_type == 4:
+           #update with replacing all ingredients in an existing recipe
+           pass
+        
       elif user_item_to_edit.lower() == "instructions":
         #update with updating instructions
         pass
