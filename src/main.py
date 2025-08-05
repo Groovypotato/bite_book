@@ -177,141 +177,163 @@ def run_add_recipes(file_path):
 
 def run_edit_recipes(file_path:str):
   print("\nLet's find the recipe to edit.\n")
-  user_search_type_question = input("What Type of Search do you want?: Title, Ingredient, Tag, or ID:\n")
-  try:
-     search_type = SearchType[user_search_type_question.upper()]
-  except KeyError:
-     print("Invalid search type.")
-  user_search_search_term = input("\nEnter Search Term:\n")
-  results = search_recipes(load_recipes_from_json(file_path),search_type,user_search_search_term)
-  if len(results) > 1:
-    print(f"There were {len(results)} results!:")
-    list_of_recipies = dictoinaries_to_recipes(results)
-    i = 1
-    for recipie in list_of_recipies:
-      print(f"{i}. {recipie.title}")
-      i = i + 1
-    user_multi_recipe_choice = input(f"Which number would you like to select 1 - {len(list_of_recipies)} or {len(list_of_recipies) + 1} to cancel the search.\n")
-    if int(user_multi_recipe_choice) <= len(list_of_recipies):
-      print("- " + list_of_recipies[int(user_multi_recipe_choice)-1].title)
-      
-    elif int(user_multi_recipe_choice) == len(list_of_recipies)+1:
-      pass
-    else:
-      print("Invalid Response!")
-  elif len(results) == 1:
-    i =1
-    print(f"\nThere was {i} Result:\n")
-    found_recipe = results[0]
-    stripped_recipe = found_recipe
-    print(f"- {found_recipe["title"]}\n")
-    user_edit_recipe_confirm = input("Is this the recipe that you want to edit.   'Yes' or 'No'\n")
-    if user_edit_recipe_confirm.lower() == "yes":
-      print("\nWhat field do you want to edit?\n")
-      recipe_to_edit = create_recipe(
-        found_recipe["title"],
-        found_recipe["ingredients"],
-        found_recipe["instructions"],
-        found_recipe["tags"],
-        found_recipe["url"],
-        found_recipe["id"]
-      )
-      for name,value in recipe_to_edit.__dict__.items():
-        if name == "id" or name == "max_length":
-          pass
-        else:
-          print(f"- {name}")
-          i = i + 1
-      user_item_to_edit = input("\nSelection:  ")
-      edit_while = 0
-      if user_item_to_edit.lower() == "title":
-        recipe_to_edit_title = recipe_to_edit.title
-        edit_while = 1
-        while edit_while == 1:
-          user_new_title = input("\nEnter the new recipe 'title'\n")
-          user_new_title_confirm = input(f"\nDoes '{user_new_title}' look correct?\n")
-          if user_new_title_confirm.lower() == "no":
-            print("\nLet's try again then...\n")
-          elif user_new_title_confirm.lower() == "yes":
-            edit_while = 0
-            recipe_to_edit.title = user_new_title
-            updated_recipe_complete_confirm = update_recipe_in_book(recipe_to_edit,file_path)
-            if updated_recipe_complete_confirm == True:
-              print(f"\nRecipe title '{recipe_to_edit_title} has been updated to {user_new_title}\n")
-            elif updated_recipe_complete_confirm == False:
-              print("\nRecipe was not updated, yell at the programmer!")
-        user_additional_edit_confirm = input("\nWould you like to edit another recipe?   'Yes' or 'No'\n")
-        if user_additional_edit_confirm.lower() == "yes":
-          run_edit_recipes(file_path)
-        elif user_additional_edit_confirm.lower() == "no":
-          print("Exiting to main menu")
-        else:
-          print("Invalid Option\n")
-          print("Returning you to the Menu")
-      elif user_item_to_edit.lower() == "ingredients":
-         print(f"\nHow would you like to edit the ingredients of {recipe_to_edit.title}\n")
-         print("1. Add an ingredient")
-         print("2. Remove an ingredient.")
-         print("3. Edit one of the ingredents in the recipe")
-         print("4. Replace all ingredients with new ones.\n")
-         user_ingredient_edit_type = input("Which would you like to do?\n")
-         if user_ingredient_edit_type == 1:
-          #update with adding an ingredient to an existing recipe
-          new_ingredient_while = 1
-          while new_ingredient_while == 1:
-            user_new_ingredient = input("Enter your new ingredient.\n")
-            user_new_ingredient_confirm = input(f"Is '{user_new_ingredient}' correct?   'Yes' or 'No'\n")
-            if user_new_ingredient_confirm.lower() == "no":
-              print("Ok, let's try this again.")
-            elif user_new_ingredient_confirm.lower() == "yes":
-              new_ingredient_while = 0
-            else:
-              print("Invalid Response")
-          print("Here is the list of the current ingredients:\n")
-          ingredient_idx = 1
-          ingredient_replacement_while = 1
-          while ingredient_replacement_while == 1:
-            for ingredient in recipe_to_edit.ingredients:
-              print(f"{ingredient_idx}. {ingredient}\n")
-            user_ingredient_add_placement = input(f"\nWhich ingredient do you want to move down in the list and replace with the new one?    1-{len(recipe_to_edit.ingredients)} or {len(recipe_to_edit.ingredients)+1} to place it at the end.\n")
-            if user_ingredient_add_placement >= len(recipe_to_edit.ingredients):
-              pass
-            elif user_ingredient_add_placement == len(recipe_to_edit.ingredients) + 1:
-              pass
-            else:
-              print("Invalid Response")
+  run_edit_while = 1
+  while run_edit_while == 1:
+    user_search_type_question = input("What Type of Search do you want?: Title, Ingredient, Tag, or ID:\n")
+    try:
+      search_type = SearchType[user_search_type_question.upper()]
+    except KeyError:
+      print("\nInvalid search type! It can only be Title, Ingredient, Tag, or ID\n")
+      run_edit_while = 0
+      run_edit_recipes(file_path)
+    user_search_search_term = input("\nEnter Search Term:\n")
+    results = search_recipes(load_recipes_from_json(file_path),search_type,user_search_search_term)
+    if len(results) > 1:
+      print(f"There were {len(results)} results!:")
+      list_of_recipies = dictoinaries_to_recipes(results)
+      i = 1
+      for recipie in list_of_recipies:
+        print(f"{i}. {recipie.title}")
+        i = i + 1
+      choice_while = 1
+      while choice_while == 1:
+        user_multi_recipe_choice = input(f"Which number would you like to select 1 - {len(list_of_recipies)} or {len(list_of_recipies) + 1} to cancel the search.\n")
+        if int(user_multi_recipe_choice) <= len(list_of_recipies):
+          choice_while = 0
+          print("- " + list_of_recipies[int(user_multi_recipe_choice)-1].title)
           
-         if user_ingredient_edit_type == 2:
-           #update with removing an ingredient in an existing recipe
-           pass
-         if user_ingredient_edit_type == 3:
-           #update with editing an ingredient in an existing recipe
-           pass
-         if user_ingredient_edit_type == 4:
-           #update with replacing all ingredients in an existing recipe
-           pass
-        
-      elif user_item_to_edit.lower() == "instructions":
-        #update with updating instructions
-        pass
-      elif user_item_to_edit.lower() == "recipe_tags":
-        #update with updating reipe tags
-        pass
-      elif user_item_to_edit.lower() == "url":
-        #update with updating url
-        pass
-      else:
-        #update what happens if they fuckup when choosing what to edit in the recipe
-        pass
-
-  else:
-    print(f"0 recipes were found that match '{user_search_search_term}'")
-    user_search_again = input("Would you like to make another search?   'Yes' or 'No'\n")
-    if user_search_again.lower() == "yes":
-        print("Starting New Search")
-        run_edit_recipes(file_path)
-    elif user_search_again.lower() == "no":
-      print("Exiting to main menu...")
+        elif int(user_multi_recipe_choice) == len(list_of_recipies)+1:
+          choice_while = 0
+        else:
+          print("Invalid Response!")
+    elif len(results) == 1:
+      i =1
+      print(f"\nThere was {i} Result:\n")
+      found_recipe = results[0]
+      stripped_recipe = found_recipe
+      print(f"- {found_recipe["title"]}\n")
+      choice_while = 1
+      while choice_while == 1:
+        user_edit_recipe_confirm = input("Is this the recipe that you want to edit.   'Yes' or 'No'\n")
+        if user_edit_recipe_confirm.lower() == "yes":
+          choice_while = 0
+          print("\nWhat field do you want to edit?\n")
+          recipe_to_edit = create_recipe(
+            found_recipe["title"],
+            found_recipe["ingredients"],
+            found_recipe["instructions"],
+            found_recipe["tags"],
+            found_recipe["url"],
+            found_recipe["id"]
+          )
+          for name,value in recipe_to_edit.__dict__.items():
+            if name == "id" or name == "max_length":
+              pass
+            else:
+              print(f"- {name}")
+              i = i + 1
+          user_item_to_edit = input("\nSelection:  ")
+          edit_while = 0
+          if user_item_to_edit.lower() == "title":
+            recipe_to_edit_title = recipe_to_edit.title
+            edit_while = 1
+            while edit_while == 1:
+              user_new_title = input("\nEnter the new recipe 'title'\n")
+              user_new_title_confirm = input(f"\nDoes '{user_new_title}' look correct?\n")
+              if user_new_title_confirm.lower() == "no":
+                print("\nLet's try again then...\n")
+              elif user_new_title_confirm.lower() == "yes":
+                edit_while = 0
+                recipe_to_edit.title = user_new_title
+                updated_recipe_complete_confirm = update_recipe_in_book(recipe_to_edit,file_path)
+                if updated_recipe_complete_confirm == True:
+                  print(f"\nRecipe title '{recipe_to_edit_title} has been updated to {user_new_title}\n")
+                elif updated_recipe_complete_confirm == False:
+                  print("\nRecipe was not updated, yell at the programmer!")
+            user_additional_edit_confirm = input("\nWould you like to edit another recipe?   'Yes' or 'No'\n")
+            if user_additional_edit_confirm.lower() == "yes":
+              run_edit_recipes(file_path)
+            elif user_additional_edit_confirm.lower() == "no":
+              print("Exiting to main menu")
+            else:
+              choice_while = 0
+              print("Invalid Option\n")
+          elif user_item_to_edit.lower() == "ingredients":
+            print(f"\nHow would you like to edit the ingredients of {recipe_to_edit.title}\n")
+            print("1. Add an ingredient")
+            print("2. Remove an ingredient.")
+            print("3. Edit one of the ingredents in the recipe")
+            print("4. Replace all ingredients with new ones.\n")
+            user_ingredient_edit_type = input("Which would you like to do?\n")
+            if int(user_ingredient_edit_type) == 1:
+              #update with adding an ingredient to an existing recipe
+              new_ingredient_while = 1
+              while new_ingredient_while == 1:
+                user_new_ingredient = input("Enter your new ingredient.\n")
+                user_new_ingredient_confirm = input(f"Is '{user_new_ingredient}' correct?   'Yes' or 'No'\n")
+                if user_new_ingredient_confirm.lower() == "no":
+                  print("\nOk, let's try this again.\n")
+                elif user_new_ingredient_confirm.lower() == "yes":
+                  new_ingredient_while = 0
+                else:
+                  print("Invalid Response")
+              print("Here is the list of the current ingredients:\n")
+              ingredient_idx = 1
+              ingredient_replacement_while = 1
+              while ingredient_replacement_while == 1:
+                for ingredient in recipe_to_edit.ingredients:
+                  print(f"{ingredient_idx}. {ingredient}\n")
+                  ingredient_idx = ingredient_idx + 1
+                ingredient_idx = 1
+                user_ingredient_add_placement = input(f"\nWhich ingredient do you want to move down in the list and replace with the new one?    1-{len(recipe_to_edit.ingredients)} or {len(recipe_to_edit.ingredients)+1} to place it at the end.\n")
+                if int(user_ingredient_add_placement) <= len(recipe_to_edit.ingredients):
+                  ingredient_replacement_while = 0
+                  recipe_to_edit.ingredients.insert(int(user_ingredient_add_placement) -1,user_new_ingredient)
+                  update_recipe_in_book(recipe_to_edit,file_path)
+                  print(f"'{user_new_ingredient}' added to '{recipe_to_edit.title}'.\n")
+                  main()
+                elif int(user_ingredient_add_placement) == len(recipe_to_edit.ingredients) + 1:
+                  ingredient_replacement_while = 1
+                  recipe_to_edit.ingredients.insert(int(user_ingredient_add_placement) -1,user_new_ingredient)
+                else:
+                  print("\nInvalid Response\n")
+              
+            if user_ingredient_edit_type == 2:
+              #update with removing an ingredient in an existing recipe
+              pass
+            if user_ingredient_edit_type == 3:
+              #update with editing an ingredient in an existing recipe
+              pass
+            if user_ingredient_edit_type == 4:
+              #update with replacing all ingredients in an existing recipe
+              pass
+            
+          elif user_item_to_edit.lower() == "instructions":
+            #update with updating instructions
+            pass
+          elif user_item_to_edit.lower() == "recipe_tags":
+            #update with updating reipe tags
+            pass
+          elif user_item_to_edit.lower() == "url":
+            #update with updating url
+            pass
+          else:
+            #update what happens if they fuckup when choosing what to edit in the recipe
+            pass
+        elif user_edit_recipe_confirm.lower() == "no":
+          choice_while = 0
+          print("\nOk, Let's try again.\n")
+          run_edit_recipes(file_path)
+        else:
+          print("Invalid choice!")
+    else:
+      print(f"0 recipes were found that match '{user_search_search_term}'")
+      user_search_again = input("Would you like to make another search?   'Yes' or 'No'\n")
+      if user_search_again.lower() == "yes":
+          print("Starting New Search")
+          run_edit_recipes(file_path)
+      elif user_search_again.lower() == "no":
+        print("Exiting to main menu...")
 
 
 def main():
