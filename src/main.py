@@ -6,8 +6,11 @@ from data_manager import (
     add_recipe_to_book,
     update_recipe_in_book,
     create_recipe,
-    dictionary_to_recipe)
+    dictionary_to_recipe,
+    delete_recipe_in_book
+    )
 from mealie_importer import import_from_mealie
+from bite_book_importer import import_from_bite_book
 file_path = "./static/recipes.json"
 
 def dictoinaries_to_recipes(list_of_dictionaries):
@@ -30,7 +33,7 @@ def run_search(file_path: str):
     i = 1
     for recipie in list_of_recipies:
       print(f"{i}. {recipie.title}")
-      i = i + 1
+      i += 1
     try:
       user_multi_recipe_choice = int(input(f"\nWhich number would you like to select 1 - {len(list_of_recipies)} or {len(list_of_recipies) + 1} to cancel the search.\n"))
     except ValueError:
@@ -109,7 +112,7 @@ def run_add_recipes(file_path):
     return
   user_recipe_ingredients_confirm = "no"
   while user_recipe_ingredients_confirm == "no":
-    user_recipe_ingredients = input("\nEnter your ingredients on one line seperated by /n:\n").split('/n')
+    user_recipe_ingredients = input("\nEnter your ingredients on one line seperated by '<i>':\n").split("<i>")
     print(f"\n{user_recipe_ingredients}")
     user_recipe_ingredients_confirm = input("\nDo these ingredients look correct?  'Yes' or 'No':\n")
     if user_recipe_ingredients_confirm.lower() == "no":
@@ -121,7 +124,7 @@ def run_add_recipes(file_path):
     return
   user_recipe_instructions_confirm = "no"
   while user_recipe_instructions_confirm == "no":
-    user_recipe_instructions = input("\nEnter your instructions on one line seperated by /n:\n").split('/n')
+    user_recipe_instructions = input("\nEnter your instructions on one line seperated by '<i>':\n").split("<i>")
     print(f"\n{user_recipe_instructions}")
     user_recipe_instructions_confirm = input("\nDo these instructions look correct?  'Yes' or 'No':\n")
     if user_recipe_instructions_confirm.lower() == "no":
@@ -133,7 +136,7 @@ def run_add_recipes(file_path):
     return
   user_recipe_tags_confirm = "no"
   while user_recipe_tags_confirm == "no":
-    user_recipe_tags = input("\nEnter your tags on one line seperated by /n:\n").split('/n')
+    user_recipe_tags = input("\nEnter your tags on one line seperated by '<t>':\n").split("<t>")
     print(user_recipe_tags)
     user_recipe_tags_confirm = input("\nDo these tag(s) look correct?  'Yes' or 'No':\n")
     if user_recipe_tags_confirm.lower() == "no":
@@ -196,7 +199,7 @@ def run_edit_recipes(file_path:str):
         recipe_idx = 1
         for recipie in list_of_recipies:
           print(f"{recipe_idx}. {recipie.title}")
-          recipe_idx = recipe_idx + 1
+          recipe_idx += 1
         recipe_idx = 1
         try:
           user_multi_recipe_choice = int(input(f"\nWhich number would you like to select 1 - {len(list_of_recipies)} or {len(list_of_recipies) + 1} to cancel the search.\n"))
@@ -230,7 +233,7 @@ def run_edit_recipes(file_path:str):
               pass
             else:
               print(f"- {name}")
-              field_idx = field_idx + 1
+              field_idx += 1
           user_item_to_edit = input("\nSelection:  ")
           edit_while = 0
           if user_item_to_edit.lower() == "title":
@@ -286,7 +289,7 @@ def run_edit_recipes(file_path:str):
                 while ingredient_replacement_while == 1:
                   for ingredient in recipe_to_edit.ingredients:
                     print(f"{ingredient_idx}. {ingredient}\n")
-                    ingredient_idx = ingredient_idx + 1
+                    ingredient_idx += 1
                   ingredient_idx = 1
                   try:
                     user_ingredient_add_placement = int(input(f"\nWhich ingredient do you want to move down in the list and replace with the new one?    1-{len(recipe_to_edit.ingredients)} or {len(recipe_to_edit.ingredients)+1} to place it at the end.\n"))
@@ -321,7 +324,7 @@ def run_edit_recipes(file_path:str):
                 ingredient_idx = 1
                 for ingredient in recipe_to_edit.ingredients:
                   print(f"{ingredient_idx}. {ingredient}\n")
-                  ingredient_idx = ingredient_idx + 1
+                  ingredient_idx += 1
                 ingredient_idx = 1
                 confirm_while = 1
                 while confirm_while == 1:
@@ -348,7 +351,7 @@ def run_edit_recipes(file_path:str):
                 ingredient_idx = 1
                 for ingredient in recipe_to_edit.ingredients:
                   print(f"{ingredient_idx}. {ingredient}\n")
-                  ingredient_idx = ingredient_idx + 1
+                  ingredient_idx += 1
                 ingredient_idx = 1
                 confirm_while = 1
                 while confirm_while == 1:
@@ -425,7 +428,7 @@ def run_edit_recipes(file_path:str):
                 while instruction_replacement_while == 1:
                   for instruction in recipe_to_edit.instructions:
                     print(f"{instruction_idx}. {instruction}\n")
-                    instruction_idx = instruction_idx + 1
+                    instruction_idx += 1
                   instruction_idx = 1
                   try:
                     user_instruction_add_placement = int(input(f"\nWhich instruction do you want to move down in the list and replace with the new one?    1-{len(recipe_to_edit.instructions)} or {len(recipe_to_edit.instructions)+1} to place it at the end.\n"))
@@ -460,7 +463,7 @@ def run_edit_recipes(file_path:str):
                 instruction_idx = 1
                 for instruction in recipe_to_edit.instructions:
                   print(f"{instruction_idx}. {instruction}\n")
-                  instruction_idx = instruction_idx + 1
+                  instruction_idx += 1
                 instruction_idx = 1
                 confirm_while = 1
                 while confirm_while == 1:
@@ -490,7 +493,7 @@ def run_edit_recipes(file_path:str):
                 instruction_idx = 1
                 for instruction in recipe_to_edit.instructions:
                   print(f"{instruction_idx}. {instruction}\n")
-                  instruction_idx = instruction_idx + 1
+                  instruction_idx += 1
                 instruction_idx = 1
                 confirm_while = 1
                 while confirm_while == 1:
@@ -567,7 +570,7 @@ def run_edit_recipes(file_path:str):
                 while tag_replacement_while == 1:
                   for tag in recipe_to_edit.recipe_tags:
                     print(f"{tag_idx}. {tag}\n")
-                    tag_idx = tag_idx + 1
+                    tag_idx += 1
                   tag_idx = 1
                   try:
                     user_tag_add_placement = int(input(f"\nWhich tag do you want to move down in the list and replace with the new one?    1-{len(recipe_to_edit.recipe_tags)} or {len(recipe_to_edit.recipe_tags)+1} to place it at the end.\n"))
@@ -602,7 +605,7 @@ def run_edit_recipes(file_path:str):
                 tag_idx = 1
                 for tag in recipe_to_edit.recipe_tags:
                   print(f"{tag_idx}. {tag}\n")
-                  tag_idx = tag_idx + 1
+                  tag_idx += 1
                 tag_idx = 1
                 confirm_while = 1
                 while confirm_while == 1:
@@ -632,7 +635,7 @@ def run_edit_recipes(file_path:str):
                 tag_idx = 1
                 for tag in recipe_to_edit.recipe_tags:
                   print(f"{tag_idx}. {tag}\n")
-                  tag_idx = tag_idx + 1
+                  tag_idx += 1
                 tag_idx = 1
                 confirm_while = 1
                 while confirm_while == 1:
@@ -716,7 +719,10 @@ def run_bulk_import(file_path):
     except ValueError:
       print("\nInvalid input. Please enter a number.\n")
     if user_bulk_import_type == 1:
-      pass
+      user_import_bite_book_path = input("\nEnter the path to the Bite Book json dictionary you are trying to import.\n")
+      import_from_bite_book(user_import_bite_book_path, file_path)
+      print("\nExiting to main menu.\n")
+      main()
     elif user_bulk_import_type == 2:
       user_bulk_import_type_2 = input(f"\nEnter file path to the 'recipes' folder of the Mealie export\n")
       import_from_mealie(user_bulk_import_type_2, file_path)
@@ -725,14 +731,78 @@ def run_bulk_import(file_path):
     else:
       print("\nInvalid Input! Choose a number in the list.\n")
 
+def run_remove_recipes(file_path):
+  print("\nLet's find the recipe to remove.\n")
+  run_remove_while = 1
+  while run_remove_while == 1:
+    user_search_type_question = input("\nWhat Type of Search do you want?: Title, Ingredient, Tag, or ID:\n")
+    try:
+      search_type = SearchType[user_search_type_question.upper()]
+    except KeyError:
+      print("\nInvalid search type! It can only be Title, Ingredient, Tag, or ID\n")
+      run_remove_while = 0
+      run_edit_recipes(file_path)
+    user_search_search_term = input("\nEnter Search Term:\n")
+    results = search_recipes(load_recipes_from_json(file_path),search_type,user_search_search_term)
+    if len(results) == 0:
+      print(f"\n0 recipes were found that match '{user_search_search_term}'")
+      user_search_again = input("\nWould you like to make another search?   'Yes' or 'No'\n")
+      if user_search_again.lower() == "yes":
+          print("\nStarting New Search\n")
+          run_edit_recipes(file_path)
+      elif user_search_again.lower() == "no":
+        print("Exiting to main menu...")
+        main()
+    elif len(results) > 1:
+      print(f"\nThere were {len(results)} results!:\n")
+      list_of_recipies = dictoinaries_to_recipes(results)
+      multi_result_choice_while = 1
+      while multi_result_choice_while == 1:
+        recipe_idx = 1
+        for recipie in list_of_recipies:
+          print(f"{recipe_idx}. {recipie.title}")
+          recipe_idx += 1
+        recipe_idx = 1
+        try:
+          user_multi_recipe_choice = int(input(f"\nWhich number would you like to select 1 - {len(list_of_recipies)} or {len(list_of_recipies) + 1} to cancel the search.\n"))
+        except ValueError:
+          print("\nInvalid input. Please enter a number.\n")
+        if int(user_multi_recipe_choice) <= len(list_of_recipies):
+          multi_result_choice_while = 0
+          multi_result_choice_while = 0
+          found_recipe = list_of_recipies[int(user_multi_recipe_choice)-1]
+        elif int(user_multi_recipe_choice) == len(list_of_recipies)+1:
+          run_edit_recipes(file_path)
+        else:
+          print("Invalid Response!")
+    elif len(results) == 1:
+      i =1
+      print(f"\nThere was {i} Result:\n")
+      found_recipe = dictionary_to_recipe(results[0])
+    choice_while = 1
+    while choice_while == 1:
+      print(f"\n- {found_recipe.title}\n")
+      user_edit_recipe_confirm = input("Is this the recipe that you want to remove.   'Yes' or 'No'\n")
+      if user_edit_recipe_confirm.lower() == "yes":
+        delete_recipe_in_book(found_recipe,file_path)
+        print(f"'{found_recipe.title}' was removed")
+        print("\nExitng to main menu.\n")
+        main()
+      elif user_edit_recipe_confirm.lower() == "no":
+        choice_while = 0
+        print("\nLet's try again.\n")
+      else:
+        print("\nInvalid input! Choose 'Yes' or 'No'.\n")
+
 def main():
   while True:
     print("\nWelome to BiteBook, All your best recipes, byte-sized!\n")
-    print("1. Search for recipe(s)")
-    print("2. Add a new recipe(s)")
-    print("3. Edit recipe(s)")
-    print("4. Bulk Import")
-    print("5. Exit program")
+    print("1. Search for a recipe")
+    print("2. Add a new recipe")
+    print("3. Edit recipe")
+    print("4. Remove a recipe")
+    print("5. Bulk Import")
+    print("6. Exit program")
     try:
       user_feautre_choice = int(input("\nChoose an option:\n"))
       if int(user_feautre_choice) == 1:
@@ -742,9 +812,11 @@ def main():
       elif int(user_feautre_choice) == 3:
         run_edit_recipes(file_path)
       elif int(user_feautre_choice) == 4:
-        run_bulk_import(file_path)
+        run_remove_recipes(file_path)
       elif int(user_feautre_choice) == 5:
-        print("Goodbye")
+        run_bulk_import(file_path)
+      elif int(user_feautre_choice) == 6:
+        print("\nGoodbye\n")
         exit()
       else:
         print("\nInvalid Input! Please enter a number in the menu.\n")

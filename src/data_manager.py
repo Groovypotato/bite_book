@@ -50,4 +50,15 @@ def update_recipe_in_book(recipe_obj,file_path):
             return True
     return False
 
+def delete_recipe_in_book(recipe_obj, file_path):
+    book = load_recipes_from_json(file_path)
+    if "recipes" in book and isinstance(book["recipes"], list):
+        for i, recipe in enumerate(book["recipes"]):
+            if recipe["id"] == recipe_obj.id:
+                book["recipes"].pop(i)
+                save_recipes_to_json(book, file_path)
+                return True
+    return False
+
+
 
