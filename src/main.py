@@ -514,6 +514,22 @@ def run_edit_recipes(file_path:str):
                           else:
                             print("Invalid Response!")
               elif int(user_ingredient_edit_type) == 4:
+                user_ingredient_edit_type_4_while = 1
+                while user_ingredient_edit_type_4_while == 1:
+                  user_new_ingredient_list = input(f"\nPlease either type or paste the ingredients below sperated by '<i>'.\n").split("<i>")
+                  recipe_to_edit.set_ingredients(user_new_ingredient_list)
+                  print(f"\n'{recipe_to_edit.title}'s ingredients have been updated to.\n")
+                  for ingredient in recipe_to_edit.ingredients:
+                    print(f"- {ingredient}")
+                  user_new_ingredient_list_confirm = input(f"\nIs this new list correct?    'Yes' or 'No'\n")
+                  if user_new_ingredient_list_confirm.lower() == "yes":
+                    update_recipe_in_book(recipe_to_edit,file_path)
+                    print("\nGreat, returning to menu.\n")
+                    main()
+                  elif user_new_ingredient_list_confirm.lower() == "no":
+                    print("\nOK, Let's try again.\n")
+                  else:
+                    print("\nInvalid Option!\n")
             elif user_item_to_edit.lower() == "recipe_tags":
               #update with updating reipe tags
               print(f"\nHow would you like to edit the ingredients of '{recipe_to_edit.title}'\n")
@@ -629,13 +645,28 @@ def run_edit_recipes(file_path:str):
                           else:
                             print("Invalid Response!")
               elif int(user_ingredient_edit_type) == 4:
+                user_ingredient_edit_type_4_while = 1
+                while user_ingredient_edit_type_4_while == 1:
+                  user_new_ingredient_list = input(f"\nPlease either type or paste the ingredients below sperated by '<i>'.\n").split("<i>")
+                  recipe_to_edit.set_ingredients(user_new_ingredient_list)
+                  print(f"\n'{recipe_to_edit.title}'s ingredients have been updated to.\n")
+                  for ingredient in recipe_to_edit.ingredients:
+                    print(f"- {ingredient}")
+                  user_new_ingredient_list_confirm = input(f"\nIs this new list correct?    'Yes' or 'No'\n")
+                  if user_new_ingredient_list_confirm.lower() == "yes":
+                    update_recipe_in_book(recipe_to_edit,file_path)
+                    print("\nGreat, returning to menu.\n")
+                    main()
+                  elif user_new_ingredient_list_confirm.lower() == "no":
+                    print("\nOK, Let's try again.\n")
+                  else:
+                    print("\nInvalid Option!\n")
             elif user_item_to_edit.lower() == "url":
               #update with updating url
               pass
             else:
               #update what happens if they fuckup when choosing what to edit in the recipe
               print("\nInvalid Choice!\n")
-
           elif user_edit_recipe_confirm.lower() == "no":
             choice_while = 0
             print("\nOk, Let's try again.\n")
