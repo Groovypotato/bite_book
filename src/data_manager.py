@@ -1,4 +1,23 @@
 import json
+from recipe import Recipe
+
+def create_recipe(title,ingredients,instructions,tags,url=None, id=None):
+   new_recipe = Recipe(title=title,url=url,id=id)
+   new_recipe.set_ingredients(ingredients)
+   new_recipe.set_instructions(instructions)
+   new_recipe.set_recipe_tags(tags)
+   return new_recipe
+
+def dictionary_to_recipe(dictionary):
+  recipe = create_recipe(
+    dictionary["title"],
+    dictionary["ingredients"],
+    dictionary["instructions"],
+    dictionary["tags"],
+    dictionary["url"],
+    dictionary["id"]
+  )
+  return recipe
 
 def save_recipes_to_json(data,file_path):
     try:
