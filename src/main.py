@@ -46,19 +46,19 @@ def run_search(file_path: str):
     user_multi_recipe_choice = input(f"Which number would you like to select 1 - {len(list_of_recipies)} or {len(list_of_recipies) + 1} to cancel the search.\n")
     if int(user_multi_recipe_choice) <= len(list_of_recipies):
       print("- " + list_of_recipies[int(user_multi_recipe_choice)-1].title)
-      user_print_card = input(f"Would you like to see the recipe card for {list_of_recipies[int(user_multi_recipe_choice)-1].title}? 'Yes' or 'No'\n")
+      user_print_card = input(f"\nWould you like to see the recipe card for {list_of_recipies[int(user_multi_recipe_choice)-1].title}? 'Yes' or 'No'\n")
       if user_print_card.lower() == "yes":
         list_of_recipies[int(user_multi_recipe_choice)-1].print_recipe_card()
-        user_search_again = input("Would you like to make another search?   'Yes' or 'No'\n")
+        user_search_again = input("\nWould you like to make another search?   'Yes' or 'No'\n")
         if user_search_again.lower() == "yes":
-          print("Starting New Search")
+          print("\nStarting New Search\n")
           run_search(file_path)
         elif user_search_again.lower() == "no":
           pass
       elif user_print_card.lower() == "no":
-        user_search_again = input("Would you like to make another search?   'Yes' or 'No'\n")
+        user_search_again = input("\nWould you like to make another search?   'Yes' or 'No'\n")
         if user_search_again.lower() == "yes":
-          print("Starting New Search")
+          print("\nStarting New Search\n")
           run_search(file_path)
         elif user_search_again.lower() == "no":
           pass
@@ -347,7 +347,6 @@ def run_edit_recipes(file_path:str):
                     else:
                       print("Invalid Response!")
               elif int(user_ingredient_edit_type) == 3:
-                #update with editing an ingredient in an existing recipe
                 user_ingredient_edit_type_3_while = 1
                 while user_ingredient_edit_type_3_while == 1:
                   print(f"\nHere is a list of ingredients for '{recipe_to_edit.title}'\n")
@@ -385,7 +384,22 @@ def run_edit_recipes(file_path:str):
                             print("Invalid Response!")
               elif int(user_ingredient_edit_type) == 4:
                 #update with replacing all ingredients in an existing recipe
-                pass
+                user_ingredient_edit_type_4_while = 1
+                while user_ingredient_edit_type_4_while == 1:
+                  user_new_ingredient_list = input(f"\nPlease either type or paste the ingredients below sperated by '<i>'.\n").split("<i>")
+                  recipe_to_edit.set_ingredients(user_new_ingredient_list)
+                  print(f"\n'{recipe_to_edit.title}'s ingredients have been updated to.\n")
+                  for ingredient in recipe_to_edit.ingredients:
+                    print(f"- {ingredient}")
+                  user_new_ingredient_list_confirm = input(f"\nIs this new list correct?    'Yes' or 'No'\n")
+                  if user_new_ingredient_list_confirm.lower() == "yes":
+                    update_recipe_in_book(recipe_to_edit,file_path)
+                    print("\nGreat, returning to menu.\n")
+                    main()
+                  elif user_new_ingredient_list_confirm.lower() == "no":
+                    print("\nOK, Let's try again.\n")
+                  else:
+                    print("\nInvalid Option!\n")
               
             elif user_item_to_edit.lower() == "instructions":
               #update with updating instructions
