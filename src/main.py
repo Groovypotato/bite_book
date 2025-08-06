@@ -43,7 +43,10 @@ def run_search(file_path: str):
     for recipie in list_of_recipies:
       print(f"{i}. {recipie.title}")
       i = i + 1
-    user_multi_recipe_choice = input(f"Which number would you like to select 1 - {len(list_of_recipies)} or {len(list_of_recipies) + 1} to cancel the search.\n")
+    try:
+      user_multi_recipe_choice = int(input(f"Which number would you like to select 1 - {len(list_of_recipies)} or {len(list_of_recipies) + 1} to cancel the search.\n"))
+    except ValueError:
+      print("Invalid input. Please enter a number.")
     if int(user_multi_recipe_choice) <= len(list_of_recipies):
       print("- " + list_of_recipies[int(user_multi_recipe_choice)-1].title)
       user_print_card = input(f"\nWould you like to see the recipe card for {list_of_recipies[int(user_multi_recipe_choice)-1].title}? 'Yes' or 'No'\n")
@@ -206,7 +209,10 @@ def run_edit_recipes(file_path:str):
         i = i + 1
       choice_while = 1
       while choice_while == 1:
-        user_multi_recipe_choice = input(f"Which number would you like to select 1 - {len(list_of_recipies)} or {len(list_of_recipies) + 1} to cancel the search.\n")
+        try:
+          user_multi_recipe_choice = int(input(f"Which number would you like to select 1 - {len(list_of_recipies)} or {len(list_of_recipies) + 1} to cancel the search.\n"))
+        except ValueError:
+          print("Invalid input. Please enter a number.")
         if int(user_multi_recipe_choice) <= len(list_of_recipies):
           choice_while = 0
           print("- " + list_of_recipies[int(user_multi_recipe_choice)-1].title)
@@ -275,7 +281,10 @@ def run_edit_recipes(file_path:str):
               print("2. Remove an ingredient.")
               print("3. Edit one of the ingredients in the recipe")
               print("4. Replace all ingredients with new ones.\n")
-              user_ingredient_edit_type = input("Which would you like to do?\n")
+              try:
+                user_ingredient_edit_type = int(input("Which would you like to do?\n"))
+              except ValueError:
+                print("Invalid input. Please enter a number.")
               if int(user_ingredient_edit_type) == 1:
                 user_ingredient_edit_type_1_while = 1
                 while user_ingredient_edit_type_1_while == 1:
@@ -288,7 +297,7 @@ def run_edit_recipes(file_path:str):
                     elif user_new_ingredient_confirm.lower() == "yes":
                       new_ingredient_while = 0
                     else:
-                      print("Invalid Response")
+                      print("Invalid Response! Choose a number in the list.")
                   print("Here is the list of the current ingredients:\n")
                   ingredient_idx = 1
                   ingredient_replacement_while = 1
@@ -297,7 +306,10 @@ def run_edit_recipes(file_path:str):
                       print(f"{ingredient_idx}. {ingredient}\n")
                       ingredient_idx = ingredient_idx + 1
                     ingredient_idx = 1
-                    user_ingredient_add_placement = input(f"\nWhich ingredient do you want to move down in the list and replace with the new one?    1-{len(recipe_to_edit.ingredients)} or {len(recipe_to_edit.ingredients)+1} to place it at the end.\n")
+                    try:
+                      user_ingredient_add_placement = int(input(f"\nWhich ingredient do you want to move down in the list and replace with the new one?    1-{len(recipe_to_edit.ingredients)} or {len(recipe_to_edit.ingredients)+1} to place it at the end.\n"))
+                    except ValueError:
+                      print("Invalid input. Please enter a number.")
                     if int(user_ingredient_add_placement) <= len(recipe_to_edit.ingredients):
                       recipe_to_edit.ingredients.insert(int(user_ingredient_add_placement) -1,user_new_ingredient)
                       update_recipe_in_book(recipe_to_edit,file_path)
@@ -316,7 +328,7 @@ def run_edit_recipes(file_path:str):
                       print("\nExiting to Menu\n")
                       main()
                     else:
-                      print("\nInvalid Response\n")
+                      print("\nInvalid Response! Choose a number in the list.\n")
                       print("\nExiting to Menu\n")
                       main()
               elif int(user_ingredient_edit_type) == 2:
@@ -358,7 +370,10 @@ def run_edit_recipes(file_path:str):
                   ingredient_idx = 1
                   confirm_while = 1
                   while confirm_while == 1:
-                    user_ingredient_edit_selection = input(f"\nWhich ingredient do you want to edit?    1-{len(recipe_to_edit.ingredients)}.\n")
+                    try:
+                      user_ingredient_edit_selection = int(input(f"\nWhich ingredient do you want to edit?    1-{len(recipe_to_edit.ingredients)}.\n"))
+                    except ValueError:
+                       print("Invalid input. Please enter a number.")
                     if int(user_ingredient_edit_selection) <= len(recipe_to_edit.ingredients):
                       confirm_while = 0
                       edit_ingredient = recipe_to_edit.ingredients.pop(int(user_ingredient_edit_selection)-1)
@@ -381,7 +396,7 @@ def run_edit_recipes(file_path:str):
                             print("Exiting to menu")
                             main()
                           else:
-                            print("Invalid Response!")
+                            print("Invalid Response! Choose a number in the list.")
               elif int(user_ingredient_edit_type) == 4:
                 user_ingredient_edit_type_4_while = 1
                 while user_ingredient_edit_type_4_while == 1:
@@ -405,7 +420,10 @@ def run_edit_recipes(file_path:str):
               print("2. Remove an instruction.")
               print("3. Edit one of the instructions in the recipe")
               print("4. Replace all instructions with new ones.\n")
-              user_instruction_edit_type = input("Which would you like to do?\n")
+              try:
+                user_instruction_edit_type = int(input("Which would you like to do?\n"))
+              except ValueError:
+                print("Invalid input. Please enter a number.")
               if int(user_instruction_edit_type) == 1:
                 user_instruction_edit_type_1_while = 1
                 while user_instruction_edit_type_1_while == 1:
@@ -418,7 +436,7 @@ def run_edit_recipes(file_path:str):
                     elif user_new_instruction_confirm.lower() == "yes":
                       new_instruction_while = 0
                     else:
-                      print("Invalid Response")
+                      print("Invalid Response! Choose a number in the list.")
                   print("Here is the list of the current instructions:\n")
                   instruction_idx = 1
                   instruction_replacement_while = 1
@@ -427,7 +445,10 @@ def run_edit_recipes(file_path:str):
                       print(f"{instruction_idx}. {instruction}\n")
                       instruction_idx = instruction_idx + 1
                     instruction_idx = 1
-                    user_instruction_add_placement = input(f"\nWhich instruction do you want to move down in the list and replace with the new one?    1-{len(recipe_to_edit.instructions)} or {len(recipe_to_edit.instructions)+1} to place it at the end.\n")
+                    try:
+                      user_instruction_add_placement = int(input(f"\nWhich instruction do you want to move down in the list and replace with the new one?    1-{len(recipe_to_edit.instructions)} or {len(recipe_to_edit.instructions)+1} to place it at the end.\n"))
+                    except ValueError:
+                      print("Invalid input. Please enter a number.")
                     if int(user_instruction_add_placement) <= len(recipe_to_edit.instructions):
                       recipe_to_edit.instructions.insert(int(user_instruction_add_placement) -1,user_new_instruction)
                       update_recipe_in_book(recipe_to_edit,file_path)
@@ -437,7 +458,7 @@ def run_edit_recipes(file_path:str):
                       update_recipe_in_book(recipe_to_edit,file_path)
                       print(f"'{user_new_instruction}' added to '{recipe_to_edit.title}'.\n")
                     else:
-                      print("\nInvalid Response\n")
+                      print("\nInvalid Response! Choose a number in the list.\n")
                     user_add_instruction_again_confirm = input("Do you want to add another instruction?    'Yes' or 'No'\n")
                     if user_add_instruction_again_confirm.lower() == "yes":
                       instruction_replacement_while = 0
@@ -461,7 +482,10 @@ def run_edit_recipes(file_path:str):
                   instruction_idx = 1
                   confirm_while = 1
                   while confirm_while == 1:
-                    user_instruction_remove_selection = input(f"\nWhich instruction do you want to remove?    1-{len(recipe_to_edit.instructions)}.\n")
+                    try:
+                      user_instruction_remove_selection = int(input(f"\nWhich instruction do you want to remove?    1-{len(recipe_to_edit.instructions)}.\n"))
+                    except ValueError:
+                      print("Invalid input. Please enter a number.")
                     if int(user_instruction_remove_selection) <= len(recipe_to_edit.instructions):
                       confirm_while = 0
                       removed_instruction = recipe_to_edit.instructions.pop(int(user_instruction_remove_selection)-1)
@@ -475,7 +499,7 @@ def run_edit_recipes(file_path:str):
                         print("Exiting to menu")
                         main()
                     else:
-                      print("Invalid Response!")
+                      print("\nInvalid Response! Choose a number in the list.\n")
               elif int(user_instruction_edit_type) == 3:
                 user_instruction_edit_type_3_while = 1
                 while user_instruction_edit_type_3_while == 1:
@@ -488,7 +512,10 @@ def run_edit_recipes(file_path:str):
                   instruction_idx = 1
                   confirm_while = 1
                   while confirm_while == 1:
-                    user_instruction_edit_selection = input(f"\nWhich instruction do you want to edit?    1-{len(recipe_to_edit.instructions)}.\n")
+                    try:
+                      user_instruction_edit_selection = int(input(f"\nWhich instruction do you want to edit?    1-{len(recipe_to_edit.instructions)}.\n"))
+                    except ValueError:
+                      print("Invalid input. Please enter a number.")
                     if int(user_instruction_edit_selection) <= len(recipe_to_edit.instructions):
                       confirm_while = 0
                       edit_instruction = recipe_to_edit.instructions.pop(int(user_instruction_edit_selection)-1)
@@ -511,7 +538,7 @@ def run_edit_recipes(file_path:str):
                             print("Exiting to menu")
                             main()
                           else:
-                            print("Invalid Response!")
+                            print("\nInvalid Response! Choose a number in the list.\n")
               elif int(user_instruction_edit_type) == 4:
                 user_instruction_edit_type_4_while = 1
                 while user_instruction_edit_type_4_while == 1:
@@ -535,7 +562,10 @@ def run_edit_recipes(file_path:str):
               print("2. Remove an tag.")
               print("3. Edit one of the tag in the recipe")
               print("4. Replace all tag with new ones.\n")
-              user_tag_edit_type = input("Which would you like to do?\n")
+              try:
+                user_tag_edit_type = int(input("Which would you like to do?\n"))
+              except ValueError:
+                print("Invalid input. Please enter a number.")
               if int(user_tag_edit_type) == 1:
                 user_tag_edit_type_1_while = 1
                 while user_tag_edit_type_1_while == 1:
@@ -548,7 +578,7 @@ def run_edit_recipes(file_path:str):
                     elif user_new_tag_confirm.lower() == "yes":
                       new_tag_while = 0
                     else:
-                      print("Invalid Response")
+                      print("\nInvalid Response! Choose a number in the list.\n")
                   print("Here is the list of the current tag:\n")
                   tag_idx = 1
                   tag_replacement_while = 1
@@ -557,7 +587,10 @@ def run_edit_recipes(file_path:str):
                       print(f"{tag_idx}. {tag}\n")
                       tag_idx = tag_idx + 1
                     tag_idx = 1
-                    user_tag_add_placement = input(f"\nWhich tag do you want to move down in the list and replace with the new one?    1-{len(recipe_to_edit.recipe_tags)} or {len(recipe_to_edit.recipe_tags)+1} to place it at the end.\n")
+                    try:
+                      user_tag_add_placement = int(input(f"\nWhich tag do you want to move down in the list and replace with the new one?    1-{len(recipe_to_edit.recipe_tags)} or {len(recipe_to_edit.recipe_tags)+1} to place it at the end.\n"))
+                    except ValueError:
+                      print("Invalid input. Please enter a number.")
                     if int(user_tag_add_placement) <= len(recipe_to_edit.recipe_tags):
                       recipe_to_edit.recipe_tags.insert(int(user_tag_add_placement) -1,user_new_tag)
                       update_recipe_in_book(recipe_to_edit,file_path)
@@ -591,7 +624,10 @@ def run_edit_recipes(file_path:str):
                   tag_idx = 1
                   confirm_while = 1
                   while confirm_while == 1:
-                    user_tag_remove_selection = input(f"\nWhich tag do you want to remove?    1-{len(recipe_to_edit.recipe_tags)}.\n")
+                    try:
+                      user_tag_remove_selection = int(input(f"\nWhich tag do you want to remove?    1-{len(recipe_to_edit.recipe_tags)}.\n"))
+                    except ValueError:
+                      print("Invalid input. Please enter a number.")
                     if int(user_tag_remove_selection) <= len(recipe_to_edit.recipe_tags):
                       confirm_while = 0
                       removed_tag = recipe_to_edit.recipe_tags.pop(int(user_tag_remove_selection)-1)
@@ -605,7 +641,7 @@ def run_edit_recipes(file_path:str):
                         print("Exiting to menu")
                         main()
                     else:
-                      print("Invalid Response!")
+                      print("\nInvalid Response! Choose a number in the list.\n")
               elif int(user_tag_edit_type) == 3:
                 user_tag_edit_type_3_while = 1
                 while user_tag_edit_type_3_while == 1:
@@ -618,7 +654,10 @@ def run_edit_recipes(file_path:str):
                   tag_idx = 1
                   confirm_while = 1
                   while confirm_while == 1:
-                    user_tag_edit_selection = input(f"\nWhich tag do you want to edit?    1-{len(recipe_to_edit.recipe_tags)}.\n")
+                    try:
+                      user_tag_edit_selection = int(input(f"\nWhich tag do you want to edit?    1-{len(recipe_to_edit.recipe_tags)}.\n"))
+                    except ValueError:
+                      print("Invalid input. Please enter a number.")
                     if int(user_tag_edit_selection) <= len(recipe_to_edit.recipe_tags):
                       confirm_while = 0
                       edit_tag = recipe_to_edit.recipe_tags.pop(int(user_tag_edit_selection)-1)
@@ -641,7 +680,7 @@ def run_edit_recipes(file_path:str):
                             print("Exiting to menu")
                             main()
                           else:
-                            print("Invalid Response!")
+                            print("\nInvalid Response! Choose a number in the list.\n")
               elif int(user_tag_edit_type) == 4:
                 user_tag_edit_type_4_while = 1
                 while user_tag_edit_type_4_while == 1:
@@ -689,22 +728,26 @@ def run_edit_recipes(file_path:str):
 
 def main():
   while True:
-    print("\nWelome to BiteBook, All your best recipes, byte-sized! ")
+    print("\nWelome to BiteBook, All your best recipes, byte-sized!\n")
     print("1. Search for recipe(s)")
     print("2. Add a new recipe(s)")
     print("3. Edit recipe(s)")
     print("4. Exit program")
-    user_feautre_choice = input("Choose an option:    ")
-    if int(user_feautre_choice) == 1:
-      run_search(file_path)
-    elif int(user_feautre_choice) == 2:
-      run_add_recipes(file_path)
-    elif int(user_feautre_choice) == 3:
-      run_edit_recipes(file_path)
-    elif int(user_feautre_choice) == 4:
-      print("Goodbye")
-      exit()
-    
+    try:
+      user_feautre_choice = int(input("\nChoose an option:\n"))
+      if int(user_feautre_choice) == 1:
+        run_search(file_path)
+      elif int(user_feautre_choice) == 2:
+        run_add_recipes(file_path)
+      elif int(user_feautre_choice) == 3:
+        run_edit_recipes(file_path)
+      elif int(user_feautre_choice) == 4:
+        print("Goodbye")
+        exit()
+      else:
+        print("\nInvalid Input! Please enter a number in the menu.\n")
+    except ValueError:
+      print("\nInvalid input. Please enter a number.\n")
 
 
 
