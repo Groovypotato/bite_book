@@ -29,7 +29,7 @@ def dictoinaries_to_recipes(list_of_dictionaries):
   return list
 
 def run_search(file_path: str):
-  user_search_type_question = input("What Type of Search do you want?: Title, Ingredient, Tag, or ID:\n")
+  user_search_type_question = input("\nWhat Type of Search do you want?: Title, Ingredient, Tag, or ID:\n")
   try:
      search_type = SearchType[user_search_type_question.upper()]
   except KeyError:
@@ -70,12 +70,12 @@ def run_search(file_path: str):
       print("Invalid Response!")
   elif len(results) == 1:
     i =1
-    print(f"There was {i} Result:")
+    print(f"\nThere was {i} Result:\n")
     found_recipe = results[0]
     stripped_recipe = found_recipe
     recipe_result = dictionary_to_recipe(stripped_recipe)
     print("- " + recipe_result.title)
-    user_print_card = input(f"Would you like to see the recipe card for {recipe_result.title}? 'Yes' or 'No'\n")
+    user_print_card = input(f"\nWould you like to see the recipe card for {recipe_result.title}? 'Yes' or 'No'\n")
     if user_print_card.lower() == "yes":
       recipe_result.print_recipe_card()
       user_search_again = input("Would you like to make another search?   'Yes' or 'No'\n")
@@ -400,7 +400,6 @@ def run_edit_recipes(file_path:str):
                   else:
                     print("\nInvalid Option!\n")
             elif user_item_to_edit.lower() == "instructions":
-              #update with updating instructions
               print(f"\nHow would you like to edit the instructions of '{recipe_to_edit.title}'\n")
               print("1. Add an instruction")
               print("2. Remove an instruction.")
@@ -531,7 +530,6 @@ def run_edit_recipes(file_path:str):
                   else:
                     print("\nInvalid Option!\n")
             elif user_item_to_edit.lower() == "recipe_tags":
-              #update with updating reipe tags
               print(f"\nHow would you like to edit the tag of '{recipe_to_edit.title}'\n")
               print("1. Add an tag")
               print("2. Remove an tag.")
@@ -663,13 +661,26 @@ def run_edit_recipes(file_path:str):
                     print("\nInvalid Option!\n")
             elif user_item_to_edit.lower() == "url":
               #update with updating url
-              pass
+              user_item_to_edit_url_while = 1
+              while user_item_to_edit_url_while == 1:
+                print(f"\nThe current url for '{recipe_to_edit.title}' is '{recipe_to_edit.url}'.\n")
+                user_edit_new_url = input(f"\nEnter the new url for '{recipe_to_edit.title}'.\n")
+                user_edit_new_url_confirm = input(f"\nIs '{user_edit_new_url}' correct?    'Yes' or 'No'\n")
+                if user_edit_new_url_confirm.lower() == "yes":
+                  recipe_to_edit.url = user_edit_new_url 
+                  update_recipe_in_book(recipe_to_edit,file_path)
+                  print(f"\nurl for '{recipe_to_edit.title}' udpated to '{recipe_to_edit.url}'.\n")
+                  print("\nExiting to main menu.\n")
+                  main()
+                if user_edit_new_url_confirm.lower() == "no":
+                  print("\nLet's try again.\n")
+                else:
+                  print("\nInvalid Choice! Try Again.\n")
             else:
-              #update what happens if they fuckup when choosing what to edit in the recipe
-              print("\nInvalid Choice!\n")
+              print("\nInvalid Choice! Enter a field to edit.\n")
           elif user_edit_recipe_confirm.lower() == "no":
             choice_while = 0
-            print("\nOk, Let's try again.\n")
+            print("\nOK, Let's try again.\n")
             run_edit_recipes(file_path)
           else:
             print("Invalid choice! Try Again.\n")

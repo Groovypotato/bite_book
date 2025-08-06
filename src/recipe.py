@@ -19,7 +19,7 @@ class Recipe:
 
     def print_recipe_card(self):
         title_card = self.title
-        tags =  "Tags [" + ", ".join(self.recipe_tags) + "]"
+        tags =  "Tags: [" + ", ".join(self.recipe_tags) + "]"
         if len(title_card) > self.max_length:
             self.max_length = len(title_card)
         self.max_length = self.max_length +7
@@ -40,6 +40,7 @@ class Recipe:
              print("| " + "- " + instructions.ljust(self.max_length - 6) + " |")
              print("| " + " " * (self.max_length -4) + " |")
         print("| " + tags.ljust(self.max_length - 4) + " |")
+        print("| "+ "URL: " + self.url.ljust(self.max_length - 9) + " |")
         print(top_bottom)
 
     def set_ingredients(self,ingredient_list):
