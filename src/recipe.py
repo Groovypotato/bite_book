@@ -19,7 +19,8 @@ class Recipe:
 
     def print_recipe_card(self):
         title_card = self.title
-        tags =  "Tags: [" + ", ".join(self.recipe_tags) + "]"
+        tags = "Tags: [" + ", ".join(self.recipe_tags or []) + "]"
+        url_display = self.url if self.url else "None"
         if len(title_card) > self.max_length:
             self.max_length = len(title_card)
         self.max_length = self.max_length +7
@@ -40,7 +41,7 @@ class Recipe:
              print("| " + "- " + instructions.ljust(self.max_length - 6) + " |")
              print("| " + " " * (self.max_length -4) + " |")
         print("| " + tags.ljust(self.max_length - 4) + " |")
-        print("| "+ "URL: " + self.url.ljust(self.max_length - 9) + " |")
+        print("| "+ "URL: " + url_display.ljust(self.max_length - 9) + " |")
         print(top_bottom)
 
     def set_ingredients(self,ingredient_list):
@@ -49,7 +50,7 @@ class Recipe:
             new_ingredient_list.append(ingredient.strip())
             if len(ingredient) > self.max_length:
                  self.max_length = len(ingredient)
-        self.ingredients = ingredient_list
+        self.ingredients = new_ingredient_list
         
     
     def set_instructions(self,instructions_list):
@@ -64,7 +65,7 @@ class Recipe:
             new_recipie_tags_list = []
             for tag in recipie_tags_list:
                 new_recipie_tags_list.append(tag.strip())
-            self.recipe_tags = recipie_tags_list
+            self.recipe_tags = new_recipie_tags_list
 
 
     def recipe_to_dictionary(self):
