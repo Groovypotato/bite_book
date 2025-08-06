@@ -401,132 +401,132 @@ def run_edit_recipes(file_path:str):
                     print("\nInvalid Option!\n")
             elif user_item_to_edit.lower() == "instructions":
               #update with updating instructions
-              print(f"\nHow would you like to edit the ingredients of '{recipe_to_edit.title}'\n")
-              print("1. Add an ingredient")
-              print("2. Remove an ingredient.")
-              print("3. Edit one of the ingredients in the recipe")
-              print("4. Replace all ingredients with new ones.\n")
-              user_ingredient_edit_type = input("Which would you like to do?\n")
-              if int(user_ingredient_edit_type) == 1:
-                user_ingredient_edit_type_1_while = 1
-                while user_ingredient_edit_type_1_while == 1:
-                  new_ingredient_while = 1
-                  while new_ingredient_while == 1:
-                    user_new_ingredient = input("Enter your new ingredient.\n")
-                    user_new_ingredient_confirm = input(f"Is '{user_new_ingredient}' correct?   'Yes' or 'No'\n")
-                    if user_new_ingredient_confirm.lower() == "no":
+              print(f"\nHow would you like to edit the instructions of '{recipe_to_edit.title}'\n")
+              print("1. Add an instruction")
+              print("2. Remove an instruction.")
+              print("3. Edit one of the instructions in the recipe")
+              print("4. Replace all instructions with new ones.\n")
+              user_instruction_edit_type = input("Which would you like to do?\n")
+              if int(user_instruction_edit_type) == 1:
+                user_instruction_edit_type_1_while = 1
+                while user_instruction_edit_type_1_while == 1:
+                  new_instruction_while = 1
+                  while new_instruction_while == 1:
+                    user_new_instruction = input("Enter your new instruction.\n")
+                    user_new_instruction_confirm = input(f"Is '{user_new_instruction}' correct?   'Yes' or 'No'\n")
+                    if user_new_instruction_confirm.lower() == "no":
                       print("\nOk, let's try this again.\n")
-                    elif user_new_ingredient_confirm.lower() == "yes":
-                      new_ingredient_while = 0
+                    elif user_new_instruction_confirm.lower() == "yes":
+                      new_instruction_while = 0
                     else:
                       print("Invalid Response")
-                  print("Here is the list of the current ingredients:\n")
-                  ingredient_idx = 1
-                  ingredient_replacement_while = 1
-                  while ingredient_replacement_while == 1:
-                    for ingredient in recipe_to_edit.ingredients:
-                      print(f"{ingredient_idx}. {ingredient}\n")
-                      ingredient_idx = ingredient_idx + 1
-                    ingredient_idx = 1
-                    user_ingredient_add_placement = input(f"\nWhich ingredient do you want to move down in the list and replace with the new one?    1-{len(recipe_to_edit.ingredients)} or {len(recipe_to_edit.ingredients)+1} to place it at the end.\n")
-                    if int(user_ingredient_add_placement) <= len(recipe_to_edit.ingredients):
-                      recipe_to_edit.ingredients.insert(int(user_ingredient_add_placement) -1,user_new_ingredient)
+                  print("Here is the list of the current instructions:\n")
+                  instruction_idx = 1
+                  instruction_replacement_while = 1
+                  while instruction_replacement_while == 1:
+                    for instruction in recipe_to_edit.instructions:
+                      print(f"{instruction_idx}. {instruction}\n")
+                      instruction_idx = instruction_idx + 1
+                    instruction_idx = 1
+                    user_instruction_add_placement = input(f"\nWhich instruction do you want to move down in the list and replace with the new one?    1-{len(recipe_to_edit.instructions)} or {len(recipe_to_edit.instructions)+1} to place it at the end.\n")
+                    if int(user_instruction_add_placement) <= len(recipe_to_edit.instructions):
+                      recipe_to_edit.instructions.insert(int(user_instruction_add_placement) -1,user_new_instruction)
                       update_recipe_in_book(recipe_to_edit,file_path)
-                      print(f"'{user_new_ingredient}' added to '{recipe_to_edit.title}'.\n")
-                    elif int(user_ingredient_add_placement) == len(recipe_to_edit.ingredients) + 1:
-                      recipe_to_edit.ingredients.insert(int(user_ingredient_add_placement) -1,user_new_ingredient)
+                      print(f"'{user_new_instruction}' added to '{recipe_to_edit.title}'.\n")
+                    elif int(user_instruction_add_placement) == len(recipe_to_edit.instructions) + 1:
+                      recipe_to_edit.instructions.insert(int(user_instruction_add_placement) -1,user_new_instruction)
                       update_recipe_in_book(recipe_to_edit,file_path)
-                      print(f"'{user_new_ingredient}' added to '{recipe_to_edit.title}'.\n")
+                      print(f"'{user_new_instruction}' added to '{recipe_to_edit.title}'.\n")
                     else:
                       print("\nInvalid Response\n")
-                    user_add_ingredient_again_confirm = input("Do you want to add another ingredient?    'Yes' or 'No'\n")
-                    if user_add_ingredient_again_confirm.lower() == "yes":
-                      ingredient_replacement_while = 0
+                    user_add_instruction_again_confirm = input("Do you want to add another instruction?    'Yes' or 'No'\n")
+                    if user_add_instruction_again_confirm.lower() == "yes":
+                      instruction_replacement_while = 0
                       print("\nOk lets add another!\n")
-                    elif user_add_ingredient_again_confirm.lower() == "no":
+                    elif user_add_instruction_again_confirm.lower() == "no":
                       print("\nExiting to Menu\n")
                       main()
                     else:
                       print("\nInvalid Response\n")
                       print("\nExiting to Menu\n")
                       main()
-              elif int(user_ingredient_edit_type) == 2:
-                user_ingredient_edit_type_2_while = 1
-                while user_ingredient_edit_type_2_while == 1:
-                  print(f"\nHere is a list of ingredients for '{recipe_to_edit.title}'\n")
-                  ingredient_replacement_while = 1
-                  ingredient_idx = 1
-                  for ingredient in recipe_to_edit.ingredients:
-                    print(f"{ingredient_idx}. {ingredient}\n")
-                    ingredient_idx = ingredient_idx + 1
-                  ingredient_idx = 1
+              elif int(user_instruction_edit_type) == 2:
+                user_instruction_edit_type_2_while = 1
+                while user_instruction_edit_type_2_while == 1:
+                  print(f"\nHere is a list of instructions for '{recipe_to_edit.title}'\n")
+                  instruction_replacement_while = 1
+                  instruction_idx = 1
+                  for instruction in recipe_to_edit.instructions:
+                    print(f"{instruction_idx}. {instruction}\n")
+                    instruction_idx = instruction_idx + 1
+                  instruction_idx = 1
                   confirm_while = 1
                   while confirm_while == 1:
-                    user_ingredient_remove_selection = input(f"\nWhich ingredient do you want to remove?    1-{len(recipe_to_edit.ingredients)}.\n")
-                    if int(user_ingredient_remove_selection) <= len(recipe_to_edit.ingredients):
+                    user_instruction_remove_selection = input(f"\nWhich instruction do you want to remove?    1-{len(recipe_to_edit.instructions)}.\n")
+                    if int(user_instruction_remove_selection) <= len(recipe_to_edit.instructions):
                       confirm_while = 0
-                      removed_ingredient = recipe_to_edit.ingredients.pop(int(user_ingredient_remove_selection)-1)
+                      removed_instruction = recipe_to_edit.instructions.pop(int(user_instruction_remove_selection)-1)
                       update_recipe_in_book(recipe_to_edit,file_path)
-                      print(f"\nRemoved '{removed_ingredient}' from '{recipe_to_edit.title}'.\n")
-                      user_edit_delete_another = input("\nWould you like to delete another ingredient?    'Yes' or 'No'\n")
+                      print(f"\nRemoved '{removed_instruction}' from '{recipe_to_edit.title}'.\n")
+                      user_edit_delete_another = input("\nWould you like to delete another instruction?    'Yes' or 'No'\n")
                       if user_edit_delete_another.lower() == "yes":
                         print("\nOK, Let's go.\n")
                       elif user_edit_delete_another.lower() == "no":
-                        user_ingredient_edit_type_2_while = 0
+                        user_instruction_edit_type_2_while = 0
                         print("Exiting to menu")
                         main()
                     else:
                       print("Invalid Response!")
-              elif int(user_ingredient_edit_type) == 3:
-                user_ingredient_edit_type_3_while = 1
-                while user_ingredient_edit_type_3_while == 1:
-                  print(f"\nHere is a list of ingredients for '{recipe_to_edit.title}'\n")
-                  ingredient_replacement_while = 1
-                  ingredient_idx = 1
-                  for ingredient in recipe_to_edit.ingredients:
-                    print(f"{ingredient_idx}. {ingredient}\n")
-                    ingredient_idx = ingredient_idx + 1
-                  ingredient_idx = 1
+              elif int(user_instruction_edit_type) == 3:
+                user_instruction_edit_type_3_while = 1
+                while user_instruction_edit_type_3_while == 1:
+                  print(f"\nHere is a list of instructions for '{recipe_to_edit.title}'\n")
+                  instruction_replacement_while = 1
+                  instruction_idx = 1
+                  for instruction in recipe_to_edit.instructions:
+                    print(f"{instruction_idx}. {instruction}\n")
+                    instruction_idx = instruction_idx + 1
+                  instruction_idx = 1
                   confirm_while = 1
                   while confirm_while == 1:
-                    user_ingredient_edit_selection = input(f"\nWhich ingredient do you want to edit?    1-{len(recipe_to_edit.ingredients)}.\n")
-                    if int(user_ingredient_edit_selection) <= len(recipe_to_edit.ingredients):
+                    user_instruction_edit_selection = input(f"\nWhich instruction do you want to edit?    1-{len(recipe_to_edit.instructions)}.\n")
+                    if int(user_instruction_edit_selection) <= len(recipe_to_edit.instructions):
                       confirm_while = 0
-                      edit_ingredient = recipe_to_edit.ingredients.pop(int(user_ingredient_edit_selection)-1)
-                      edit_ingredient_while = 1
-                      while edit_ingredient_while == 1:
-                        edited_ingredient = input(f"\nWhat would you like to change '{edit_ingredient}' to?\n")
-                        edited_ingredient_confirm = input(f"\nIs '{edited_ingredient}' correct?\n")
-                        if edited_ingredient_confirm.lower() == "no":
+                      edit_instruction = recipe_to_edit.instructions.pop(int(user_instruction_edit_selection)-1)
+                      edit_instruction_while = 1
+                      while edit_instruction_while == 1:
+                        edited_instruction = input(f"\nWhat would you like to change '{edit_instruction}' to?\n")
+                        edited_instruction_confirm = input(f"\nIs '{edited_instruction}' correct?\n")
+                        if edited_instruction_confirm.lower() == "no":
                           print("\nLet's try again.\n")
-                        elif edited_ingredient_confirm.lower() == "yes":
-                          edit_ingredient_while = 0
-                          recipe_to_edit.ingredients.insert(int(user_ingredient_edit_selection)-1,edited_ingredient)
+                        elif edited_instruction_confirm.lower() == "yes":
+                          edit_instruction_while = 0
+                          recipe_to_edit.instructions.insert(int(user_instruction_edit_selection)-1,edited_instruction)
                           update_recipe_in_book(recipe_to_edit,file_path)
-                          print(f"\nUpdated ingredient from'{edit_ingredient}' to '{edited_ingredient}'.\n")
-                          user_edit_delete_another = input("\nWould you like to edit another ingredient?    'Yes' or 'No'\n")
+                          print(f"\nUpdated instruction from'{edit_instruction}' to '{edited_instruction}'.\n")
+                          user_edit_delete_another = input("\nWould you like to edit another instruction?    'Yes' or 'No'\n")
                           if user_edit_delete_another.lower() == "yes":
                             print("\nOK, Let's go.\n")
                           elif user_edit_delete_another.lower() == "no":
-                            user_ingredient_edit_type_3_while = 0
+                            user_instruction_edit_type_3_while = 0
                             print("Exiting to menu")
                             main()
                           else:
                             print("Invalid Response!")
-              elif int(user_ingredient_edit_type) == 4:
-                user_ingredient_edit_type_4_while = 1
-                while user_ingredient_edit_type_4_while == 1:
-                  user_new_ingredient_list = input(f"\nPlease either type or paste the ingredients below sperated by '<i>'.\n").split("<i>")
-                  recipe_to_edit.set_ingredients(user_new_ingredient_list)
-                  print(f"\n'{recipe_to_edit.title}'s ingredients have been updated to.\n")
-                  for ingredient in recipe_to_edit.ingredients:
-                    print(f"- {ingredient}")
-                  user_new_ingredient_list_confirm = input(f"\nIs this new list correct?    'Yes' or 'No'\n")
-                  if user_new_ingredient_list_confirm.lower() == "yes":
+              elif int(user_instruction_edit_type) == 4:
+                user_instruction_edit_type_4_while = 1
+                while user_instruction_edit_type_4_while == 1:
+                  user_new_instruction_list = input(f"\nPlease either type or paste the instructions below sperated by '<i>'.\n").split("<i>")
+                  recipe_to_edit.set_instructions(user_new_instruction_list)
+                  print(f"\n'{recipe_to_edit.title}'s instructions have been updated to.\n")
+                  for instruction in recipe_to_edit.instructions:
+                    print(f"- {instruction}")
+                  user_new_instruction_list_confirm = input(f"\nIs this new list correct?    'Yes' or 'No'\n")
+                  if user_new_instruction_list_confirm.lower() == "yes":
                     update_recipe_in_book(recipe_to_edit,file_path)
                     print("\nGreat, returning to menu.\n")
                     main()
-                  elif user_new_ingredient_list_confirm.lower() == "no":
+                  elif user_new_instruction_list_confirm.lower() == "no":
                     print("\nOK, Let's try again.\n")
                   else:
                     print("\nInvalid Option!\n")
