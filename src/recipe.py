@@ -18,12 +18,14 @@ class Recipe:
 
 
     def print_recipe_card(self):
+        all_lines = [self.title] + (self.ingredients or []) + (self.instructions or [])
+        all_lines.append("Tags: [" + ", ".join(self.recipe_tags or []) + "]")
+        all_lines.append("URL: " + (self.url or "None"))
+        longest_line = max(len(line) for line in all_lines)
+        self.max_length = min(longest_line + 7, 80)
         title_card = self.title
         tags = "Tags: [" + ", ".join(self.recipe_tags or []) + "]"
         url_display = self.url if self.url else "None"
-        if len(title_card) > self.max_length:
-            self.max_length = len(title_card)
-        self.max_length = self.max_length +7
         top_bottom = "+" + "-" * (self.max_length - 2) + "+"
         print(top_bottom)
         print("| " + "* * * Recipe * * *".center(self.max_length - 4) + " |")
@@ -32,16 +34,26 @@ class Recipe:
         print(top_bottom)
         print("| " + "* * * Ingredients * * *".center(self.max_length - 4) + " |")
         print(top_bottom)
-        for ingredients in self.ingredients:
-            print("| " + "- " + ingredients.ljust(self.max_length - 6) + " |")
+        for ingredient in self.ingredients:
+            wrapped = wrapped_line(ingredient, self.max_length - 6)
+            print("| - " + wrapped[0].ljust(self.max_length - 6) + " |")
+            for line in wrapped[1:]:
+                print("|   " + line.ljust(self.max_length - 6) + " |")
         print(top_bottom)
         print("| " + "* * * Instructions * * *".center(self.max_length - 4) + " |")
         print(top_bottom)
-        for instructions in self.instructions:
-             print("| " + "- " + instructions.ljust(self.max_length - 6) + " |")
-             print("| " + " " * (self.max_length -4) + " |")
+        for instruction in self.instructions:
+            wrapped = wrapped_line(instruction, self.max_length - 6)
+            print("| - " + wrapped[0].ljust(self.max_length - 6) + " |")
+            for line in wrapped[1:]:
+                print("|   " + line.ljust(self.max_length - 6) + " |")
+            print("| " + " " * (self.max_length -4) + " |")
+        print("| " + " " * (self.max_length -4) + " |")
         print("| " + tags.ljust(self.max_length - 4) + " |")
-        print("| "+ "URL: " + url_display.ljust(self.max_length - 9) + " |")
+        wrapped_url = wrap_url_line(self.url or "None", self.max_length - 10)
+        print("| URL: " + wrapped_url[0].ljust(self.max_length - 10) + "  |")
+        for line in wrapped_url[1:]:
+            print("|       " + line.ljust(self.max_length - 10) + " |") 
         print(top_bottom)
 
     def set_ingredients(self,ingredient_list):
@@ -78,3 +90,23 @@ class Recipe:
         "url": self.url
         }
     
+def wrapped_line(line: str, width: int):
+    if len(line) <= width:
+        return [line]
+    lines = []
+    split_words = line.split()
+    current_line = ""
+    for word in split_words:
+        if len(current_line) + len(word) + 1 <= width:
+            if current_line:
+                current_line += " "
+            current_line += word
+        else:
+            lines.append(current_line)
+            current_line = word
+    if current_line:
+        lines.append(current_line)
+    return lines
+
+def wrap_url_line(url: str, width: int):
+    return [url[i:i+width] for i in range(0, len(url), width)]
