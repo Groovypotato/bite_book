@@ -23,14 +23,15 @@ Bite Book is a command-line Python application that lets you store, search, edit
 
 ```text
 bite_book/
-├── main.py                # Main application loop
-├── data_manager.py        # Recipe creation, save/load logic
-├── recipe.py              # Recipe class and formatting
-├── search_manager.py      # Search utilities
-├── mealie_importer.py     # Mealie export importer
-├── bite_book_importer.py  # Bite Book format importer
-└── static/
-    └── recipes.json       # Your saved recipe book
+├── main.py                # Main application loop (UI, navigation)
+├── data_manager.py        # Create, load, update, delete recipe logic
+├── recipe.py              # Recipe class and recipe card formatter
+├── search_manager.py      # Search recipes by title, ingredient, tag, or ID
+├── mealie_importer.py     # Import recipes from Mealie exports
+├── bite_book_importer.py  # Import recipes from other Bite Book files
+├── book/
+│   └── recipes.json       # Your saved recipes (the “book”)
+└── README.md              # Project documentation
 ```
 
 ---
@@ -101,12 +102,12 @@ Here’s what a recipe looks like in the terminal:
 |                      * * * Instructions * * *                                |
 +------------------------------------------------------------------------------+
 | - Preheat oven to 350° F.                                                    |
-| - Whisk together flour, baking powder, baking soda, salt and spices.        |
-| - Beat the butter and sugars until light and fluffy.                        |
+| - Whisk together flour, baking powder, baking soda, salt and spices.         |
+| - Beat the butter and sugars until light and fluffy.                         |
 | ...                                                                          |
 |                                                                              |
 | Tags: [Cake]                                                                 |
-| URL: https://kitchenfunwithmy3sons.com/bear-paw-cookies/                    |
+| URL: https://kitchenfunwithmy3sons.com/bear-paw-cookies/                     |
 +------------------------------------------------------------------------------+
 ```
 
@@ -118,7 +119,7 @@ Here’s what a recipe looks like in the terminal:
 python main.py
 ```
 
-Make sure your `recipes.json` exists in the `static/` directory. The application will prompt you through interactive menus.
+Make sure your `recipes.json` exists in the `book/` directory. The application will prompt you through interactive menus.
 
 ---
 
