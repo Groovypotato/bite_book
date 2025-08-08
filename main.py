@@ -11,7 +11,10 @@ from data_manager import (
     )
 from mealie_importer import import_from_mealie
 from bite_book_importer import import_from_bite_book
-file_path = "./static/recipes.json"
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent
+file_path = BASE_DIR / "book" / "recipes.json"
+
 
 def dictionaries_to_recipes(list_of_dictionaries):
   recipes = []
