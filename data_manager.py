@@ -1,5 +1,6 @@
 import json
 from recipe import Recipe
+from pathlib import Path
 
 def create_recipe(title,ingredients,instructions,tags,url=None, id=None):
    new_recipe = Recipe(title=title,url=url,id=id)
@@ -19,29 +20,34 @@ def dictionary_to_recipe(dictionary):
   )
   return recipe
 
-def save_recipes_to_json(data,file_path):
+def save_recipes_to_json(data, file_path):
+    file_path = Path(file_path)
+    file_path.parent.mkdir(parents=True, exist_ok=True)
     try:
-        with open(file_path, 'w') as book:
-            json.dump(data, book, indent=2)
+        with file_path.open('w', encoding='utf-8') as book:
+            json.dump(data, book, indent=2, ensure_ascii=False)
     except FileNotFoundError as e:
         print(e)
 
 def load_recipes_from_json(file_path):
+    file_path = Path(file_path)
     try:
-        with open(file_path,'r')as book:
+        with file_path.open('r', encoding='utf-8') as book:
             data = json.load(book)
         return data
     except FileNotFoundError:
         return {"recipes": []}
 
-def add_recipe_to_book(recipe_obj,file_path):
+def add_recipe_to_book(recipe_obj, file_path):
+    file_path = Path(file_path)
     book = load_recipes_from_json(file_path)
     if "recipes" not in book or not isinstance(book["recipes"], list):
         book["recipes"] = []
     book["recipes"].append(recipe_obj.recipe_to_dictionary())
-    save_recipes_to_json(book,file_path)
+    save_recipes_to_json(book, file_path)
 
-def update_recipe_in_book(recipe_obj,file_path):
+def update_recipe_in_book(recipe_obj, file_path):
+    file_path = Path(file_path)
     book = load_recipes_from_json(file_path)
     for i, recipe in enumerate(book["recipes"]):
         if recipe["id"] == recipe_obj.id:
@@ -51,6 +57,7 @@ def update_recipe_in_book(recipe_obj,file_path):
     return False
 
 def delete_recipe_in_book(recipe_obj, file_path):
+    file_path = Path(file_path)
     book = load_recipes_from_json(file_path)
     if "recipes" not in book or not isinstance(book["recipes"], list):
         print(f"Error: No valid 'recipes' list found in {file_path}")
@@ -62,7 +69,6 @@ def delete_recipe_in_book(recipe_obj, file_path):
             return True
     print(f"Error: Recipe with ID '{recipe_obj.id}' not found.")
     return False
-
 
 
 
